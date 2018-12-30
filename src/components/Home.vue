@@ -1,106 +1,142 @@
 <style scoped>
-    .layout{
-        border: 1px solid #d7dde4;
-        background: #f5f7f9;
-        position: relative;
-        border-radius: 4px;
+    .layout-con{
+        height: 100%;
+        width: 100%;
+    }
+    .menu-item span{
+        display: inline-block;
         overflow: hidden;
+        width: 69px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: bottom;
+        transition: width .2s ease .2s;
     }
-    .layout-logo{
-        width: 100px;
-        height: 30px;
-        background: #5b6270;
-        border-radius: 3px;
-        float: left;
-        position: relative;
-        top: 15px;
-        left: 20px;
+    .menu-item i{
+        transform: translateX(0px);
+        transition: font-size .2s ease, transform .2s ease;
+        vertical-align: middle;
+        font-size: 16px;
     }
-    .layout-nav{
-        width: 420px;
+    .collapsed-menu span{
+        width: 0px;
+        transition: width .2s ease;
+    }
+    .collapsed-menu i{
+        transform: translateX(5px);
+        transition: font-size .2s ease .2s, transform .2s ease .2s;
+        vertical-align: middle;
+        font-size: 22px;
+    }
+    .log-img {
+        display:block;
         margin: 0 auto;
-        margin-right: 20px;
-    }
-    .layout-footer-center{
-        text-align: center;
+        width: 20%;
+        height: 20%;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        border-radius: 50%;
     }
 </style>
 <template>
     <div class="layout">
-        <Layout>
-            <Header>
-                <Menu mode="horizontal" theme="dark" active-name="1">
-                    <div class="layout-logo"></div>
-                    <div class="layout-nav">
-                        <MenuItem name="1">
-                            <Icon type="ios-navigate"></Icon>
-                            Item 1
+        <Layout :style="{minHeight: '100vh'}">
+            <Sider collapsible  :collapsed-width="78" v-model="isCollapsed">
+                <Menu theme="dark"   width="auto" accordion :class="menuitemClasses">
+                    <img class="log-img" src="http://image.iphpt.com/1509003662wGdnYZDxr6a525f9c91847315e2de94ede9ac64dd3.jpg" alt="log">
+                    <Submenu name="1">
+                        <template slot="title">
+                            <Icon type="ios-paper" ></Icon>
+                                <span>内容管理</span>
+                        </template>
+                        <MenuItem name="1-1">
+                            <Tooltip content="文章管理" theme="light" placement="right">
+                                <Icon type="ios-navigate"></Icon>&nbsp;&nbsp;
+                            </Tooltip>
+                            <span>文章管理</span>
                         </MenuItem>
-                        <MenuItem name="2">
-                            <Icon type="ios-keypad"></Icon>
-                            Item 2
+                        <MenuItem name="1-2">
+                            <Tooltip content="评论管理" theme="light" placement="right">
+                                <Icon type="ios-search"></Icon>&nbsp;&nbsp;
+                            </Tooltip>
+                            <span>评论管理</span>
                         </MenuItem>
-                        <MenuItem name="3">
-                            <Icon type="ios-analytics"></Icon>
-                            Item 3
+                        <MenuItem name="1-3">
+                            <Tooltip content="留言管理" theme="light" placement="right">
+                                <Icon type="ios-settings"></Icon>&nbsp;&nbsp;
+                            </Tooltip>
+                            <span>留言管理</span>
                         </MenuItem>
-                        <MenuItem name="4">
-                            <Icon type="ios-paper"></Icon>
-                            Item 4
+                    </Submenu>
+                    <Submenu name="2">
+                        <template slot="title">
+                            <Tooltip content="用户管理" theme="light" placement="right">
+                                <Icon type="ios-people" />&nbsp;&nbsp;
+                            </Tooltip>
+                            <span>用户管理</span>
+                        </template>
+                        <MenuItem name="2-1">
+                            <Tooltip content="用户列表" theme="light" placement="right">
+                                <Icon type="ios-settings"></Icon>&nbsp;&nbsp;
+                            </Tooltip>
+                            <span>用户列表</span>
                         </MenuItem>
-                    </div>
+                    </Submenu>
                 </Menu>
-            </Header>
-            <Layout :style="{padding: '0 50px'}">
-                <Breadcrumb :style="{margin: '16px 0'}">
-                    <BreadcrumbItem>Home</BreadcrumbItem>
-                    <BreadcrumbItem>Components</BreadcrumbItem>
-                    <BreadcrumbItem>Layout</BreadcrumbItem>
-                </Breadcrumb>
-                <Content :style="{padding: '24px 0', minHeight: '280px', background: '#fff'}">
-                    <Layout>
-                        <Sider hide-trigger :style="{background: '#fff'}">
-                            <Menu active-name="1-2" theme="light" width="auto" :open-names="['1']">
-                                <Submenu name="1">
-                                    <template slot="title">
-                                        <Icon type="ios-navigate"></Icon>
-                                        Item 1
-                                    </template>
-                                    <MenuItem name="1-1">Option 1</MenuItem>
-                                    <MenuItem name="1-2">Option 2</MenuItem>
-                                    <MenuItem name="1-3">Option 3</MenuItem>
-                                </Submenu>
-                                <Submenu name="2">
-                                    <template slot="title">
-                                        <Icon type="ios-keypad"></Icon>
-                                        Item 2
-                                    </template>
-                                    <MenuItem name="2-1">Option 1</MenuItem>
-                                    <MenuItem name="2-2">Option 2</MenuItem>
-                                </Submenu>
-                                <Submenu name="3">
-                                    <template slot="title">
-                                        <Icon type="ios-analytics"></Icon>
-                                        Item 3
-                                    </template>
-                                    <MenuItem name="3-1">Option 1</MenuItem>
-                                    <MenuItem name="3-2">Option 2</MenuItem>
-                                </Submenu>
-                            </Menu>
-                        </Sider>
-                        <Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
-                            Content
-                        </Content>
-                    </Layout>
+                <br>
+
+            </Sider>
+            <Layout>
+                <Header :style="{background: '#fff', boxShadow: '0 2px 3px 2px rgba(0,0,0,.1)'}">
+                    <div style="float: right;">
+                        <Badge :count="3">
+                            <Dropdown trigger="click" style="margin-left: 20px;float: right;">
+                                <a href="javascript:void(0)">
+                                    <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                                    <!--<Icon type="ios-arrow-down"></Icon>-->
+                                </a>
+                                <DropdownMenu slot="list">
+                                    <DropdownItem>驴打滚</DropdownItem>
+                                    <DropdownItem>炸酱面</DropdownItem>
+                                    <DropdownItem>豆汁儿</DropdownItem>
+                                    <DropdownItem>冰糖葫芦</DropdownItem>
+                                    <DropdownItem>北京烤鸭</DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
+                        </Badge>
+                    </div>
+                </Header>
+                <Content :style="{padding: '0 16px 16px'}">
+                    <Breadcrumb :style="{margin: '16px 0'}">
+                        <BreadcrumbItem>Home</BreadcrumbItem>
+                        <BreadcrumbItem>Components</BreadcrumbItem>
+                        <BreadcrumbItem>Layout</BreadcrumbItem>
+                    </Breadcrumb>
+                    <Card>
+                        <div style="height: 600px">Content</div>
+                    </Card>
                 </Content>
             </Layout>
-            <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
         </Layout>
-    </div>
     </div>
 </template>
 <script>
     export default {
-
+        data () {
+            return {
+                count:12,
+                isCollapsed: false,
+            };
+        },
+        computed: {
+            menuitemClasses: function () {
+                return [
+                    'menu-item',
+                    this.isCollapsed ? 'collapsed-menu' : ''
+                ]
+            }
+        },
+        methods: {
+        }
     }
 </script>
