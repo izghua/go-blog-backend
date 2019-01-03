@@ -42,20 +42,20 @@
     <div class="layout">
         <Layout :style="{minHeight: '100vh'}">
             <Sider collapsible  :collapsed-width="78" v-model="isCollapsed">
-                <Menu theme="dark"   width="auto" accordion :class="menuitemClasses">
+                <Menu theme="dark"   width="auto" accordion :class="menuitemClasses" @on-select="handleSelect">
                     <img class="log-img" src="http://image.iphpt.com/1509003662wGdnYZDxr6a525f9c91847315e2de94ede9ac64dd3.jpg" alt="log">
                     <Submenu name="1">
                         <template slot="title">
                             <Icon type="ios-paper" ></Icon>
                                 <span>内容管理</span>
                         </template>
-                        <MenuItem name="1-1">
-                            <Tooltip content="文章管理" theme="light" placement="right">
+                        <MenuItem name="/post/list" >
+                            <Tooltip content="文章列表" theme="light" placement="right">
                                 <Icon type="ios-navigate"></Icon>&nbsp;&nbsp;
                             </Tooltip>
-                            <span>文章管理</span>
+                            <span>文章列表</span>
                         </MenuItem>
-                        <MenuItem name="1-2">
+                        <MenuItem name="1-2" to="/post/list">
                             <Tooltip content="评论管理" theme="light" placement="right">
                                 <Icon type="ios-search"></Icon>&nbsp;&nbsp;
                             </Tooltip>
@@ -106,16 +106,24 @@
                         </Badge>
                     </div>
                 </Header>
-                <Content :style="{padding: '0 16px 16px'}">
-                    <Breadcrumb :style="{margin: '16px 0'}">
-                        <BreadcrumbItem>Home</BreadcrumbItem>
-                        <BreadcrumbItem>Components</BreadcrumbItem>
-                        <BreadcrumbItem>Layout</BreadcrumbItem>
-                    </Breadcrumb>
-                    <Card>
-                        <div style="height: 600px">Content</div>
-                    </Card>
-                </Content>
+                <i-col span="20">
+                    <div class="layout-content-main">
+                        <router-view></router-view>
+                    </div>
+                </i-col>
+                <!--<div class="layout-content-main">-->
+                <!--</div>-->
+                <!--<Content :style="{padding: '0 16px 16px'}">-->
+                    <!--<router-view></router-view>-->
+                    <!--&lt;!&ndash;<Breadcrumb :style="{margin: '16px 0'}">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<BreadcrumbItem>Home</BreadcrumbItem>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<BreadcrumbItem>Components</BreadcrumbItem>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<BreadcrumbItem>Layout</BreadcrumbItem>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</Breadcrumb>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<Card>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<div style="height: 600px">Content</div>&ndash;&gt;-->
+                    <!--&lt;!&ndash;</Card>&ndash;&gt;-->
+                <!--</Content>-->
             </Layout>
         </Layout>
     </div>
@@ -128,6 +136,10 @@
                 isCollapsed: false,
             };
         },
+        name: 'home',
+        mounted() {
+        },
+
         computed: {
             menuitemClasses: function () {
                 return [
@@ -137,6 +149,9 @@
             }
         },
         methods: {
+            handleSelect (name) {
+                this.$router.push(name);
+            },
         }
     }
 </script>
