@@ -15,9 +15,15 @@ const routers = [
         }
     },
     {
-        path: '/post/list',
-        component: PostList,
-        name: '帖子首页',
+        path: '/',
+        component: Home,
+        name: '首页',
+        meta: {
+            requireAuth: true,
+        },
+        children: [
+            { path: '/post', component: PostList, name: 'list'},
+        ]
     }
 ];
 

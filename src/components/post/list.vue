@@ -6,12 +6,17 @@
 
 <template>
     <div>
-        <Breadcrumb>
-            <BreadcrumbItem>Homes</BreadcrumbItem>
-            <BreadcrumbItem>Compsonents</BreadcrumbItem>
-            <BreadcrumbItem>Layodsfut</BreadcrumbItem>
+        <Breadcrumb :style="{margin: '16px 0'}">
+            <BreadcrumbItem>Home</BreadcrumbItem>
+            <BreadcrumbItem>POST</BreadcrumbItem>
+            <BreadcrumbItem>LIST</BreadcrumbItem>
         </Breadcrumb>
-        <Table :columns="columns10" :data="data9"></Table>
+        <Card>
+            <div style="height: 600px">
+                <Table :columns="columns10" :data="data9"></Table>
+
+            </div>
+        </Card>
 
     </div>
 </template>

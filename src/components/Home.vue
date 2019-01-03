@@ -49,7 +49,7 @@
                             <Icon type="ios-paper" ></Icon>
                                 <span>内容管理</span>
                         </template>
-                        <MenuItem name="/post/list" >
+                        <MenuItem name="/post" >
                             <Tooltip content="文章列表" theme="light" placement="right">
                                 <Icon type="ios-navigate"></Icon>&nbsp;&nbsp;
                             </Tooltip>
@@ -106,11 +106,10 @@
                         </Badge>
                     </div>
                 </Header>
-                <i-col span="20">
-                    <div class="layout-content-main">
-                        <router-view></router-view>
-                    </div>
-                </i-col>
+                <Content :style="{padding: '0 16px 16px'}">
+                    <router-view></router-view>
+                </Content>
+
                 <!--<div class="layout-content-main">-->
                 <!--</div>-->
                 <!--<Content :style="{padding: '0 16px 16px'}">-->
