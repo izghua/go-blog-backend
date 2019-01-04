@@ -109,20 +109,6 @@
                 <Content :style="{padding: '0 16px 16px'}">
                     <router-view></router-view>
                 </Content>
-
-                <!--<div class="layout-content-main">-->
-                <!--</div>-->
-                <!--<Content :style="{padding: '0 16px 16px'}">-->
-                    <!--<router-view></router-view>-->
-                    <!--&lt;!&ndash;<Breadcrumb :style="{margin: '16px 0'}">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<BreadcrumbItem>Home</BreadcrumbItem>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<BreadcrumbItem>Components</BreadcrumbItem>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<BreadcrumbItem>Layout</BreadcrumbItem>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</Breadcrumb>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<Card>&ndash;&gt;-->
-                        <!--&lt;!&ndash;<div style="height: 600px">Content</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</Card>&ndash;&gt;-->
-                <!--</Content>-->
             </Layout>
         </Layout>
     </div>
