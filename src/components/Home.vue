@@ -19,7 +19,7 @@
         font-size: 16px;
     }
     .collapsed-menu span{
-        width: 0px;
+        width: 0;
         transition: width .2s ease;
     }
     .collapsed-menu i{
@@ -71,7 +71,7 @@
                     <Submenu name="2">
                         <template slot="title">
                             <Tooltip content="用户管理" theme="light" placement="right">
-                                <Icon type="ios-people" />&nbsp;&nbsp;
+                                <Icon type="ios-people"></Icon>&nbsp;&nbsp;
                             </Tooltip>
                             <span>用户管理</span>
                         </template>
@@ -92,7 +92,7 @@
                         <Badge :count="3">
                             <Dropdown trigger="click" style="margin-left: 20px;float: right;">
                                 <a href="javascript:void(0)">
-                                    <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" />
+                                    <Avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg"></Avatar>
                                     <!--<Icon type="ios-arrow-down"></Icon>-->
                                 </a>
                                 <DropdownMenu slot="list">

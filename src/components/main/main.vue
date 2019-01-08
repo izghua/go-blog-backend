@@ -34,8 +34,8 @@ import SideMenu from "./components/side-menu";
 import HeaderBar from "./components/header-bar";
 import User from "./components/user";
 import routers from "../../router/routers";
-import minLogo from "../../assets/images/logo-min.jpg";
-import maxLogo from "../../assets/images/logo.jpg";
+import minLogo from "../../assets/g9zz_logo.jpg";
+import maxLogo from "../../assets/g9zz_logo.jpg";
 import "./main.less";
 export default {
   name: "Main",
