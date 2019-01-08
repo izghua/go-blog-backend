@@ -1,7 +1,7 @@
 <!-- 自助开发分页组件 -->
 <template>
     <div style="text-align:center;background-color:white;padding:15px 0;">
-        <Page :total="total" show-sizer show-elevator show-total @on-change="onChange" @on-page-size-change="onPageSizeChange" />
+        <Page :total="total" show-sizer show-elevator show-total @on-change="onChange" @on-page-size-change="onPageSizeChange"></Page>
     </div>
 </template>
 

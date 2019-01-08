@@ -1,7 +1,8 @@
 import Main from '../components/main'
 import parentView from '../components/parent-view'
-const Home = ()=>import('../views/single-page/home') // 首页
-const User = ()=>import('../views/users/index.vue') // 用户管理
+const Home = ()=>import('../views/single-page/home');// 首页
+const User = ()=>import('../views/users/index.vue');// 用户管理
+const PostList = ()=>import('../views/post/list.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -55,97 +56,147 @@ export default [
       }
     ]
   },
-
+  // {
+  //   path:"/post",
+  //   name:'post',
+  //   meta: {
+  //     hideInBread: true,
+  //     icon: 'ios-book',
+  //     title: '文章管理'
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: 'list',
+  //       name: 'post_list',
+  //       meta: {
+  //         icon: 'ios-book',
+  //         title: '文章管理'
+  //       },
+  //       component: Post,
+  //     },
+  //   ]
+  // },
   {
-    path: '/user',
-    name: 'user',
+    path: '/post',
+    name: 'post',
     meta: {
-       hideInBread: true,
-       icon: 'md-person',
-       title: '用户管理'
+      icon: 'ios-book',
+      title: '文章管理'
     },
     component: Main,
     children: [
       {
-        path: 'list',
-        name: 'user_list',
+        path: 'post_list',
+        name: 'post_list',
         meta: {
-          icon: 'md-person',
-          title: '用户管理'
+          icon: 'ios-book',
+          title: '文章列表'
         },
-        component: User,
-      },
-    ]
-  },
-
-  {
-    path: '/multilevel',
-    name: 'multilevel',
-    meta: {
-      icon: 'md-menu',
-      title: '多级菜单'
-    },
-    component: Main,
-    children: [
-      {
-        path: 'level_2_1',
-        name: 'level_2_1',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-1'
-        },
-        component: () => import('../views/multilevel/level-2-1.vue')
+        component: PostList
       },
       {
-        path: 'level_2_2',
-        name: 'level_2_2',
+        path: 'post_trash',
+        name: 'post_trash',
         meta: {
-          icon: 'md-funnel',
-          showAlways: true,
-          title: '二级-2'
+          icon: 'md-trash',
+          title: '回收站'
         },
-        component: parentView,
-        children: [
-          {
-            path: 'level_2_2_1',
-            name: 'level_2_2_1',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('../views/multilevel/level-2-2/level-2-2-1.vue')
-          },
-          {
-            path: 'level_2_2_2',
-            name: 'level_2_2_2',
-            meta: {
-              icon: 'md-funnel',
-              title: '三级'
-            },
-            component: () => import('../views/multilevel/level-2-2/level-2-2-2.vue')
-          }
-        ]
-      },
-      {
-        path: 'level_2_3',
-        name: 'level_2_3',
-        meta: {
-          icon: 'md-funnel',
-          title: '二级-3'
-        },
-        component: () => import('../views/multilevel/level-2-3.vue')
+        component: PostList
       }
     ]
   },
-  {
-    path: '',
-    name: 'doc',
-    meta: {
-      title: '文档',
-      href: 'https://lison16.github.io/iview-admin-doc/#/',
-      icon: 'ios-book'
-    }
-  },
+
+  // {
+  //   path: '/user',
+  //   name: 'user',
+  //   meta: {
+  //      hideInBread: true,
+  //      icon: 'md-person',
+  //      title: '用户管理'
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: 'list',
+  //       name: 'user_list',
+  //       meta: {
+  //         icon: 'md-person',
+  //         title: '用户管理'
+  //       },
+  //       component: User,
+  //     },
+  //   ]
+  // },
+  //
+  // {
+  //   path: '/multilevel',
+  //   name: 'multilevel',
+  //   meta: {
+  //     icon: 'md-menu',
+  //     title: '多级菜单'
+  //   },
+  //   component: Main,
+  //   children: [
+  //     {
+  //       path: 'level_2_1',
+  //       name: 'level_2_1',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         title: '二级-1'
+  //       },
+  //       component: () => import('../views/multilevel/level-2-1.vue')
+  //     },
+  //     {
+  //       path: 'level_2_2',
+  //       name: 'level_2_2',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         showAlways: true,
+  //         title: '二级-2'
+  //       },
+  //       component: parentView,
+  //       children: [
+  //         {
+  //           path: 'level_2_2_1',
+  //           name: 'level_2_2_1',
+  //           meta: {
+  //             icon: 'md-funnel',
+  //             title: '三级'
+  //           },
+  //           component: () => import('../views/multilevel/level-2-2/level-2-2-1.vue')
+  //         },
+  //         {
+  //           path: 'level_2_2_2',
+  //           name: 'level_2_2_2',
+  //           meta: {
+  //             icon: 'md-funnel',
+  //             title: '三级'
+  //           },
+  //           component: () => import('../views/multilevel/level-2-2/level-2-2-2.vue')
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'level_2_3',
+  //       name: 'level_2_3',
+  //       meta: {
+  //         icon: 'md-funnel',
+  //         title: '二级-3'
+  //       },
+  //       component: () => import('../views/multilevel/level-2-3.vue')
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '',
+  //   name: 'doc',
+  //   meta: {
+  //     title: '文档',
+  //     href: 'https://lison16.github.io/iview-admin-doc/#/',
+  //     icon: 'ios-book'
+  //   }
+  // },
   {
     path: '/message',
     name: 'message',
