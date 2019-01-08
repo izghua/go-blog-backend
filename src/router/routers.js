@@ -3,6 +3,7 @@ import parentView from '../components/parent-view'
 const Home = ()=>import('../views/single-page/home');// 首页
 const User = ()=>import('../views/users/index.vue');// 用户管理
 const PostList = ()=>import('../views/post/list.vue');
+const PostCreate = ()=>import('../views/post/create.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -103,6 +104,16 @@ export default [
           title: '回收站'
         },
         component: PostList
+      },
+      {
+        path: 'post_create',
+        name: 'post_create',
+        meta: {
+            hideInMenu: true,
+            icon: 'ios-book',
+            title: '创建文章'
+        },
+        component: PostCreate
       }
     ]
   },
@@ -197,6 +208,7 @@ export default [
   //     icon: 'ios-book'
   //   }
   // },
+
   {
     path: '/message',
     name: 'message',

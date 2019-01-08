@@ -16,7 +16,7 @@ let config = {
   headers: {
      'Content-Type': 'multipart/form-data'
   }
-}
+};
 
 // 获取列表数据
 export function GetUserList(params){

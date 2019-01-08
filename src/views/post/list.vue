@@ -8,6 +8,11 @@
     <div>
         <Card>
             <div style="height: 600px">
+                <div style="margin-bottom: 20px">
+                    <router-link to="post_create">
+                        <Button type="info" ghost>创建</Button>
+                    </router-link>
+                </div>
                 <Table :columns="columns10" :data="data9"></Table>
                 <div style="margin-top: 40px;text-align: center"><Page :total="100"></Page></div>
             </div>
@@ -15,10 +20,12 @@
     </div>
 </template>
 <script>
-    import CreateAxios from '../../api/axios'
+    // import CreateAxios from '../../api/axios'
     // import CreateAxios from './axios'
     // import {ErrCodeMessage} from '../libs/tool'
-    const axios = CreateAxios();
+    // const axios = CreateAxios();
+    import { getPostList } from '@/api/post'
+
     import expandRow from './expand-post.vue';
     export default {
         data () {
@@ -168,23 +175,34 @@
         },
         methods: {
             myPage (page = 1) {
-                var that = this;
-                axios.get('/post',{
-                    // headers: {
-                    //     'x-auth-token': that.token,
-                    // },
-                    params: {
-                        'page':page
-                    }
-                }).then((res) => {
-                    console.log(res.data)
-                    // this.totalNum = res.data.pager.entities;
-                    // this.pageSize = +res.data.pager.limit;
-                    // this.data6 = res.data.data;
-                }).catch(function (error) {
-                    console.log(error);
-                });
+                console.log("查询页面")
+                getPostList(page).then(res => {
+                    console.log("看","快说快说")
+                    this.tableData = res.data
+                }).catch(err => {
+                    console.log("有醋味")
+                    console.log(err,"又问题")
+                })
             },
+
+            // myPage (page = 1) {
+            //     var that = this;
+            //     axios.get('/post',{
+            //         // headers: {
+            //         //     'x-auth-token': that.token,
+            //         // },
+            //         params: {
+            //             'page':page
+            //         }
+            //     }).then((res) => {
+            //         console.log(res.data)
+            //         // this.totalNum = res.data.pager.entities;
+            //         // this.pageSize = +res.data.pager.limit;
+            //         // this.data6 = res.data.data;
+            //     }).catch(function (error) {
+            //         console.log(error);
+            //     });
+            // },
             // show (index) {
             //     this.$Modal.info({
             //         title: 'User Info',
