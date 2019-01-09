@@ -6,11 +6,11 @@ const axios = CreateAxios();
 
 export function getPostList(page){
     return axios.get(
-        '/post',
+        '/console/post',
         {
             page:1,
             limit:2,
-            headers: {"Access-Control-Allow-Origin": "*"}
+            // headers: {"Access-Control-Allow-Origin": "*"}
         }
     )
 }
