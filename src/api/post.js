@@ -15,6 +15,18 @@ export function getPostList(page){
     )
 }
 
+export function PostStore(title,category,tags,summary,content) {
+    return axios.post(
+        '/console/post',
+        {
+            title: title,
+            category: category,
+            tags: tags,
+            summary: summary,
+            content: content
+        }
+    )
+}
 
 // export const getPostList = (page) => {
 //     return axios.get({  // 这里返回的是一个Promise，request方法传入一个配置对象，配置项可参考axios

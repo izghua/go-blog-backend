@@ -1,29 +1,30 @@
 <template>
     <div>
         <Card>
-            <div style="height: 600px">
-                    <Form ref="formValidate" :model="formValidate" :rules="ruleValidate" :label-width="80">
-                        <FormItem label="title" prop="title">
-                            <Input v-model="formValidate.name" placeholder="title"></Input>
+            <div >
+                    <Form ref="formValidate" label-position="left" :model="formValidate" :rules="ruleValidate" :label-width="80">
+                        <FormItem label="Title" prop="title" >
+                            <Input v-model="formValidate.title" placeholder="title"></Input>
                         </FormItem>
-                        <FormItem label="category" prop="category">
-                            <Select v-model="formValidate.city" placeholder="Select your city">
+                        <FormItem label="Category" prop="category">
+                            <Select v-model="formValidate.category" placeholder="Select your category">
                                 <Option value="beijing">New York</Option>
                                 <Option value="shanghai">London</Option>
                                 <Option value="shenzhen">Sydney</Option>
                             </Select>
                         </FormItem>
-                        <FormItem label="tags" prop="tags">
-                            <Select v-model="model10" multiple filterable style="width:260px">
-                                <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                        <FormItem label="Tags" prop="tags">
+                            <!--<span :model="formValidate.tags">{{formValidate.tags}}</span>-->
+                            <Select v-model="formValidate.tags" multiple filterable >
+                                <Option v-for="item in tags" :value="item.value" :key="item.value">{{ item.tag }}</Option>
                             </Select>
                         </FormItem>
 
-                        <FormItem label="summary" prop="desc">
-                            <Input v-model="formValidate.desc" type="textarea" :autosize="{minRows: 2,maxRows: 5}" placeholder="Enter something..."></Input>
+                        <FormItem label="Summary" prop="summary">
+                            <Input v-model="formValidate.summary" type="textarea" :autosize="{minRows: 2}" placeholder="Enter summary..."></Input>
                         </FormItem>
                         <FormItem label="Content" prop="Content">
-                            <i-editor v-model="content" :showMdTip="showMdTip" affix paste :placeholder="placeholder" :showSummary="showSummary"></i-editor>
+                            <i-editor v-model="content" :showMdTip="showMdTip" :autosize="autosize" affix paste :placeholder="placeholder" :showSummary="showSummary"></i-editor>
                         </FormItem>
                         <FormItem>
                             <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
@@ -38,86 +39,75 @@
 </template>
 
 <script>
+    import { PostStore } from '@/api/post'
 
     export default {
         data () {
             return {
                 formValidate: {
-                    name: '',
-                    mail: '',
-                    city: '',
-                    gender: '',
-                    interest: [],
-                    date: '',
-                    time: '',
-                    desc: '',
+                    title: '',
+                    category: '',
+                    tags: [],
+                    summary: '',
+                    content: '',
                 },
-                cityList: [
+                tags: [
                     {
                         value: 'New York',
-                        label: 'New York'
+                        tag: 'New York'
                     },
                     {
                         value: 'London',
-                        label: 'London'
+                        tag: 'London'
                     },
                     {
                         value: 'Sydney',
-                        label: 'Sydney'
+                        tag: 'Sydney'
                     },
                     {
                         value: 'Ottawa',
-                        label: 'Ottawa'
+                        tag: 'Ottawa'
                     },
                     {
                         value: 'Paris',
-                        label: 'Paris'
+                        tag: 'Paris'
                     },
                     {
                         value: 'Canberra',
-                        label: 'Canberra'
+                        tag: 'Canberra'
                     }
                 ],
-                model10: [],
+                // model10: [],
                 content: '',
-                placeholder:"22222",
+                placeholder:"支持markdown哦",
                 showSummary:true,
                 showMdTip:true,
+                showDiff:true,
+                autosize: {minRows: 15},
                 ruleValidate: {
-                    name: [
-                        { required: true, message: 'The name cannot be empty', trigger: 'blur' }
+                    title: [
+                        { required: true, message: 'The title cannot be empty', trigger: 'blur' }
                     ],
-                    mail: [
-                        { required: true, message: 'Mailbox cannot be empty', trigger: 'blur' },
-                        { type: 'email', message: 'Incorrect email format', trigger: 'blur' }
+                    category: [
+                        { required: true, message: 'Please select the category', trigger: 'blur' },
                     ],
-                    city: [
-                        { required: true, message: 'Please select the city', trigger: 'change' }
+                    tags: [
+                        { type: "array", required: true, message: 'Please select the tags', trigger: 'blur' }
                     ],
-                    gender: [
-                        { required: true, message: 'Please select gender', trigger: 'change' }
+                    summary: [
+                        { required: true, message: 'The summary can not be empty', trigger: 'blur' }
                     ],
-                    interest: [
-                        { required: true, type: 'array', min: 1, message: 'Choose at least one hobby', trigger: 'change' },
-                        { type: 'array', max: 2, message: 'Choose two hobbies at best', trigger: 'change' }
-                    ],
-                    date: [
-                        { required: true, type: 'date', message: 'Please select the date', trigger: 'change' }
-                    ],
-                    time: [
-                        { required: true, type: 'string', message: 'Please select time', trigger: 'change' }
-                    ],
-                    desc: [
-                        { required: true, message: 'Please enter a personal introduction', trigger: 'blur' },
-                        { type: 'string', min: 20, message: 'Introduce no less than 20 words', trigger: 'blur' }
-                    ]
                 }
             }
         },
         methods: {
             handleSubmit (name) {
+                let that = this;
+                console.log(that.formValidate.title,"看标题")
                 this.$refs[name].validate((valid) => {
                     if (valid) {
+                        let res = PostStore(that.formValidate.title,that.formValidate.category,that.formValidate.tags,that.formValidate.summary,that.formValidate.content)
+                        console.log(res,"看结果")
                         this.$Message.success('Success!');
                     } else {
                         this.$Message.error('Fail!');
