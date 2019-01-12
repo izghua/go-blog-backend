@@ -4,6 +4,12 @@ import ApiConf from './conf'
 const axios = CreateAxios();
 
 
+// const imgUploadUrl =
+
+// export function imgUploadUrl() {
+//     return axios.baseURL + "/console/post";
+// }
+
 export function getPostList(page){
     return axios.get(
         '/console/post',
@@ -14,6 +20,14 @@ export function getPostList(page){
         }
     )
 }
+
+export function PostCreate() {
+    return axios.get(
+        'console/post/create'
+    )
+}
+
+
 
 export function PostStore(title,category,tags,summary,content) {
     return axios.post(
