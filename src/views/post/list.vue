@@ -44,7 +44,7 @@
                     },
                     {
                         title: 'title',
-                        key: 'name'
+                        key: 'title'
                     },
                     {
                         title: 'category',
@@ -94,80 +94,7 @@
                         }
                     }
                 ],
-                data9: [
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    },
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    },
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    },
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    },
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    },
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    },
-                    {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    }, {
-                        name: 'John Brown',
-                        category: 18,
-                        view: 122,
-                        created_at: '2019-01-08 17:29:37',
-                        do: 'Steve Jobs',
-                        tags:"tag,tagmtaqg",
-                        content:"这是一个挪威人"
-                    }
-
-                ]
+                data9: []
             }
         },
         mounted() {
@@ -175,10 +102,9 @@
         },
         methods: {
             myPage (page = 1) {
-                console.log("查询页面")
                 getPostList(page).then(res => {
-                    console.log("看","快说快说")
-                    this.tableData = res.data
+                    console.log("看",res.data.data,"快说快说")
+                    this.data9 = res.data.data.data
                 }).catch(err => {
                     console.log("有醋味")
                     console.log(err,"又问题")

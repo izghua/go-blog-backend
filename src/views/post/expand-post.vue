@@ -11,32 +11,12 @@
                 <span class="expand-value">{{ row.tags }}</span>
             </Col>
 
-            <!--<Col span="8">-->
-                <!--<span class="expand-key">content: </span>-->
-                <!--<span class="expand-value">{{ row.content }}</span>-->
-            <!--</Col>-->
-            <!--<Col span="8">-->
-                <!--<span class="expand-key">Birthday: </span>-->
-                <!--<span class="expand-value">{{ row.birthday }}</span>-->
-            <!--</Col>-->
         </Row>
         <Row>
             <Col span="12">
                 <span class="expand-key">content: </span>
                 <span class="expand-value">{{ row.content }}</span>
             </Col>
-            <!--<Col span="8">-->
-                <!--<span class="expand-key">Favorite book: </span>-->
-                <!--<span class="expand-value">《{{ row.book }}》</span>-->
-            <!--</Col>-->
-            <!--<Col span="8">-->
-                <!--<span class="expand-key">Favorite movie: </span>-->
-                <!--<span class="expand-value">{{ row.movie }}</span>-->
-            <!--</Col>-->
-            <!--<Col span="8">-->
-                <!--<span class="expand-key">Favorite music: </span>-->
-                <!--<span class="expand-value">{{ row.music }}</span>-->
-            <!--</Col>-->
         </Row>
 
     </div>

@@ -22,7 +22,7 @@
                             <Input v-model="formValidate.summary" type="textarea" :autosize="{minRows: 2}" placeholder="Enter summary..."></Input>
                         </FormItem>
                         <FormItem label="Content" prop="Content">
-                            <i-editor v-model="formValidate.content" :config="config"  :showMdTip="showMdTip" :autosize="autosize" affix paste :placeholder="placeholder" :showSummary="showSummary"></i-editor>
+                            <i-editor v-model="formValidate.content" :config="config" :img-url="imgUrl"  :showMdTip="showMdTip" :autosize="autosize" affix paste :placeholder="placeholder" :showSummary="showSummary"></i-editor>
                         </FormItem>
                         <FormItem>
                             <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
@@ -92,7 +92,6 @@
                 .then(data => {
                     this.tags = data.data.data.tags
                     this.categories = data.data.data.cates
-                    // this.config.action = "./23423432/234"
                     this.config.action = data.data.data.imgUploadUrl
                 })
                 .catch(() => {
@@ -100,16 +99,16 @@
                 });
 
             },
-
+            imgUrl(res) {
+                return res.data.path
+            },
 
             handleSubmit (name) {
                 let that = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        // let r = this.highlight(that.formValidate.content)
-                        // console.log(r,"???????????")
                         let res = PostStore(that.formValidate.title,that.formValidate.category,that.formValidate.tags,that.formValidate.summary,that.formValidate.content)
-                        //
+
                         this.$Message.success('Success!');
                     } else {
                         this.$Message.error('Fail!');
