@@ -7,15 +7,23 @@
     <div>
         <Row class="expand-row">
             <Col span="12">
-                <span class="expand-key">tags: </span>
-                <span class="expand-value">{{ row.tags }}</span>
-            </Col>
+                <Card style="width:320px">
+                    <div style="word-wrap:break-word; ">
+                        <!--<span class="expand-key">original: </span>-->
+                        <span class="expand-value" >{{ row.original }}</span>
+                    </div>
+                </Card>
 
-        </Row>
-        <Row>
+            </Col>
             <Col span="12">
-                <span class="expand-key">content: </span>
-                <span class="expand-value">{{ row.content }}</span>
+                <Card style="width:320px">
+                    <div style="word-wrap:break-word; ">
+                        <!--<span class="expand-key">content: </span>-->
+                        <span class="expand-value" v-html="row.content"></span>
+                        <!--<h3>A high quality UI Toolkit based on Vue.js</h3>-->
+                    </div>
+                </Card>
+
             </Col>
         </Row>
 

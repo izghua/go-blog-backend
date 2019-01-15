@@ -13,19 +13,16 @@
                         <Button type="info" ghost>创建</Button>
                     </router-link>
                 </div>
-                <Table :columns="columns10" :data="data9"></Table>
+                <span :data9="data9"></span>
+                <Table stripe  :highlight-row=true :columns="columns10" :data="data9"></Table>
                 <div style="margin-top: 40px;text-align: center"><Page :total="100"></Page></div>
             </div>
         </Card>
     </div>
 </template>
 <script>
-    // import CreateAxios from '../../api/axios'
-    // import CreateAxios from './axios'
-    // import {ErrCodeMessage} from '../libs/tool'
-    // const axios = CreateAxios();
-    import { getPostList } from '@/api/post'
 
+    import { getPostList } from '@/api/post'
     import expandRow from './expand-post.vue';
     export default {
         data () {
@@ -37,26 +34,60 @@
                         render: (h, params) => {
                             return h(expandRow, {
                                 props: {
-                                    row: params.row
+                                    row: params.row.post
                                 }
                             })
                         }
                     },
                     {
-                        title: 'title',
-                        key: 'title'
+                        title: '标题',
+                        key: 'title',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.post.title)
+                        }
                     },
                     {
                         title: 'category',
-                        key: 'category'
+                        key: 'category',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.category.displayName)
+                        }
                     },
                     {
                         title: 'view',
-                        key: 'view'
+                        key: 'view',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.view.num)
+                        }
+                    },
+                    {
+                        title: 'author',
+                        key: 'author',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.author.name)
+                        }
                     },
                     {
                         title: 'createdAt',
-                        key: 'created_at'
+                        key: 'createdAt',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.post.createdAt)
+                        }
                     },
                     {
                         title: 'Action',
@@ -102,9 +133,10 @@
         },
         methods: {
             myPage (page = 1) {
+                let that  = this
                 getPostList(page).then(res => {
-                    console.log("看",res.data.data,"快说快说")
-                    this.data9 = res.data.data.data
+                    // console.log("看",res.data.data,"快说快说")
+                    this.data9 = res.data.data
                 }).catch(err => {
                     console.log("有醋味")
                     console.log(err,"又问题")
