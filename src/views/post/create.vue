@@ -67,7 +67,7 @@
                 ruleValidate: {
                     title: [
                         { required: true, message: 'The title cannot be empty', trigger: 'blur' },
-                        { max:10, message: 'The title length is too long', trigger: 'blur'}
+                        { max:100, message: 'The title length is too long', trigger: 'blur'}
                     ],
                     category: [
                         // { required: true, message: 'Please select the category', trigger: 'change' },
@@ -107,9 +107,22 @@
                 let that = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        let res = PostStore(that.formValidate.title,that.formValidate.category,that.formValidate.tags,that.formValidate.summary,that.formValidate.content)
+                        PostStore(that.formValidate.title,that.formValidate.category,that.formValidate.tags,that.formValidate.summary,that.formValidate.content)
+                            .then(res => {
+                                console.log(res.data)
+                                if (res.data.code === 0) {
+                                    this.$Message.success(res.data.message);
+                                    setTimeout(() => {
+                                        this.$router.push('/post/post_list')
+                                    },2000)
+                                } else {
+                                    this.$Message.error(res.data.message);
 
-                        this.$Message.success('Success!');
+                                }
+                            }).catch(err => {
+                                this.$Message.error("创建失败"+ err);
+                            })
+
                     } else {
                         this.$Message.error('Fail!');
                     }

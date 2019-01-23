@@ -10,20 +10,27 @@ const axios = CreateAxios();
 //     return axios.baseURL + "/console/post";
 // }
 
-export function getPostList(page){
+let config = {
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+}
+
+export function getPostList(params){
     return axios.get(
-        '/console/post',
+         '/console/post',
         {
-            page:1,
-            limit:2,
-            // headers: {"Access-Control-Allow-Origin": "*"}
+            params
         }
     )
 }
 
-export function PostCreate() {
+export function PostCreate(params) {
     return axios.get(
-        'console/post/create'
+        'console/post/create',
+        {
+            params
+        }
     )
 }
 
@@ -38,7 +45,8 @@ export function PostStore(title,category,tags,summary,content) {
             tags: tags,
             summary: summary,
             content: content
-        }
+        },
+        config
     )
 }
 

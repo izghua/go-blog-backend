@@ -2,12 +2,18 @@
     .expand-row{
         margin-bottom: 16px;
     }
+    img{
+        width:auto;
+        height:auto;
+        max-width:100%;
+        max-height:100%;
+    }
 </style>
 
 <template>
     <div>
         <Card>
-            <div style="height: 600px">
+            <div style="height:auto;">
                 <div style="margin-bottom: 20px">
                     <router-link to="post_create">
                         <Button type="info" ghost>创建</Button>
@@ -15,7 +21,7 @@
                 </div>
                 <span :data9="data9"></span>
                 <Table stripe  :highlight-row=true :columns="columns10" :data="data9"></Table>
-                <div style="margin-top: 40px;text-align: center"><Page :total="100"></Page></div>
+                <div style="margin-top: 40px;text-align: center"><Page :current="current" :total="total" @on-change="changePage" :page-size="pageSize"></Page></div>
             </div>
         </Card>
     </div>
@@ -23,6 +29,7 @@
 <script>
 
     import { getPostList } from '@/api/post'
+    import { consoleLimit }  from '@/api/conf'
     import expandRow from './expand-post.vue';
     export default {
         data () {
@@ -37,6 +44,16 @@
                                     row: params.row.post
                                 }
                             })
+                        }
+                    },
+                    {
+                        title: 'ID',
+                        key: 'id',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.post.id)
                         }
                     },
                     {
@@ -125,7 +142,11 @@
                         }
                     }
                 ],
-                data9: []
+                data9: [],
+                total: 0,
+                pageSize: 10,
+                current: 1,
+
             }
         },
         mounted() {
@@ -134,15 +155,24 @@
         methods: {
             myPage (page = 1) {
                 let that  = this
-                getPostList(page).then(res => {
-                    // console.log("看",res.data.data,"快说快说")
-                    this.data9 = res.data.data
+                let params = {
+                    "page": page,
+                    "limit": consoleLimit
+                }
+                getPostList(params).then(res => {
+                    console.log("看",res.data.data.page.count,"快说快说")
+                    this.data9 = res.data.data.list
+                    this.total = res.data.data.page.count
+                    this.pageSize = res.data.data.page.limit
+                    this.current = res.data.data.page.current
                 }).catch(err => {
                     console.log("有醋味")
                     console.log(err,"又问题")
                 })
             },
-
+            changePage (page) {
+                this.myPage(page);
+            },
             // myPage (page = 1) {
             //     var that = this;
             //     axios.get('/post',{
