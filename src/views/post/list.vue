@@ -126,7 +126,7 @@
                                             this.show(params.index)
                                         }
                                     }
-                                }, 'View'),
+                                }, '修改'),
                                 h('Button', {
                                     props: {
                                         type: 'error',
@@ -137,7 +137,7 @@
                                             this.remove(params.index)
                                         }
                                     }
-                                }, 'Delete')
+                                }, '删除')
                             ]);
                         }
                     }
@@ -173,30 +173,7 @@
             changePage (page) {
                 this.myPage(page);
             },
-            // myPage (page = 1) {
-            //     var that = this;
-            //     axios.get('/post',{
-            //         // headers: {
-            //         //     'x-auth-token': that.token,
-            //         // },
-            //         params: {
-            //             'page':page
-            //         }
-            //     }).then((res) => {
-            //         console.log(res.data)
-            //         // this.totalNum = res.data.pager.entities;
-            //         // this.pageSize = +res.data.pager.limit;
-            //         // this.data6 = res.data.data;
-            //     }).catch(function (error) {
-            //         console.log(error);
-            //     });
-            // },
-            // show (index) {
-            //     this.$Modal.info({
-            //         title: 'User Info',
-            //         content: `Name：${this.data6[index].name}<br>Age：${this.data6[index].age}<br>Address：${this.data6[index].address}`
-            //     })
-            // },
+
             remove (index) {
                 this.data6.splice(index, 1);
             }
