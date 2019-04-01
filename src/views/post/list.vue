@@ -15,7 +15,7 @@
         <Card>
             <div style="height:auto;">
                 <div style="margin-bottom: 20px">
-                    <router-link to="post_create">
+                    <router-link to="create">
                         <Button type="info" ghost>创建</Button>
                     </router-link>
                 </div>
@@ -123,7 +123,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.show(params.index)
+                                            this.edit(params.row.post.id)
                                         }
                                     }
                                 }, '修改'),
@@ -176,7 +176,10 @@
 
             remove (index) {
                 this.data6.splice(index, 1);
-            }
+            },
+            edit (id) {
+                this.$router.push('/post/update?id=' + id)
+            },
         }
     }
 </script>

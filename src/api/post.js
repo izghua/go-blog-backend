@@ -34,7 +34,29 @@ export function PostCreate(params) {
     )
 }
 
+export function PostEdit(id,params) {
+    return axios.get(
+        'console/post/edit/' + id,
+        {
+            params
+        }
+    )
+}
 
+
+export function PostUpdate(id,title,category,tags,summary,content) {
+    return axios.put(
+        'console/post/'+ id,
+        {
+            title: title,
+            category: category,
+            tags: tags,
+            summary: summary,
+            content: content
+        },
+        config
+    )
+}
 
 export function PostStore(title,category,tags,summary,content) {
     return axios.post(

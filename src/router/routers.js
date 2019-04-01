@@ -4,6 +4,7 @@ const Home = ()=>import('../views/single-page/home');// 首页
 const User = ()=>import('../views/users/index.vue');// 用户管理
 const PostList = ()=>import('../views/post/list.vue');
 const PostCreate = ()=>import('../views/post/create.vue');
+const PostUpdate = ()=>import('../views/post/update.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -88,7 +89,7 @@ export default [
     component: Main,
     children: [
       {
-        path: 'post_list',
+        path: 'list',
         name: 'post_list',
         meta: {
           icon: 'ios-book',
@@ -97,7 +98,7 @@ export default [
         component: PostList
       },
       {
-        path: 'post_trash',
+        path: 'trash',
         name: 'post_trash',
         meta: {
           icon: 'md-trash',
@@ -106,7 +107,7 @@ export default [
         component: PostList
       },
       {
-        path: 'post_create',
+        path: 'create',
         name: 'post_create',
         meta: {
             hideInMenu: true,
@@ -114,7 +115,17 @@ export default [
             title: '创建文章'
         },
         component: PostCreate
-      }
+      },
+      {
+          path: 'update',
+          name: 'post_update',
+          meta: {
+              hideInMenu: true,
+              icon: 'ios-book',
+              title: '更新文章'
+          },
+          component: PostUpdate
+      },
     ]
   },
 
