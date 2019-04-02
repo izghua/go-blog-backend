@@ -72,6 +72,34 @@ export function PostStore(title,category,tags,summary,content) {
     )
 }
 
+export function PostDestory(id,params) {
+    return axios.delete(
+        'console/post/' + id,
+        {
+            params
+        }
+    )
+}
+
+export function PostTrash(params) {
+    return axios.get(
+        'console/post/trash',
+        {
+            params
+        }
+    )
+}
+
+
+export function PostUnTrash(id,params) {
+    return axios.put(
+        'console/post/' + id + '/trash',
+        {
+            params
+        }
+    )
+}
+
 // export const getPostList = (page) => {
 //     return axios.get({  // 这里返回的是一个Promise，request方法传入一个配置对象，配置项可参考axios
 //         url: ApiConf.postList,

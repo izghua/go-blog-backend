@@ -14,11 +14,6 @@
     <div>
         <Card>
             <div style="height:auto;">
-                <div style="margin-bottom: 20px">
-                    <router-link to="create">
-                        <Button type="info" ghost>创建</Button>
-                    </router-link>
-                </div>
                 <span :data9="data9"></span>
                 <Table stripe  :highlight-row=true :columns="columns10" :data="data9"></Table>
                 <div style="margin-top: 40px;text-align: center"><Page :current="current" :total="total" @on-change="changePage" :page-size="pageSize"></Page></div>
@@ -28,7 +23,7 @@
 </template>
 <script>
 
-    import { getPostList,PostDestory } from '@/api/post'
+    import { PostTrash,PostUnTrash } from '@/api/post'
     import { consoleLimit }  from '@/api/conf'
     import expandRow from './expand-post.vue';
     export default {
@@ -126,18 +121,7 @@
                                             this.edit(params.row.post.id)
                                         }
                                     }
-                                }, '修改'),
-                                h('Button', {
-                                    props: {
-                                        type: 'error',
-                                        size: 'small'
-                                    },
-                                    on: {
-                                        click: () => {
-                                            this.remove(params.row.post.id)
-                                        }
-                                    }
-                                }, '删除')
+                                }, '恢复')
                             ]);
                         }
                     }
@@ -159,7 +143,7 @@
                     "page": page,
                     "limit": consoleLimit
                 };
-                getPostList(params).then(res => {
+                PostTrash(params).then(res => {
                     this.data9 = res.data.data.list;
                     this.total = res.data.data.page.count;
                     this.pageSize = res.data.data.page.limit;
@@ -172,8 +156,8 @@
                 this.myPage(page);
             },
 
-            remove (id) {
-                PostDestory(id)
+            edit (id) {
+                PostUnTrash(id)
                     .then(res => {
                         if (res.data.code === 0) {
                             this.$Message.success(res.data.message);
@@ -187,9 +171,6 @@
                     }).catch(err => {
                     this.$Message.error("操作失败"+ err);
                 })
-            },
-            edit (id) {
-                this.$router.push('/post/update?id=' + id)
             },
         }
     }

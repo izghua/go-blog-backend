@@ -119,7 +119,6 @@
                     if (valid) {
                         PostUpdate(that.postId,that.formValidate.title,that.formValidate.category,that.formValidate.tags,that.formValidate.summary,that.formValidate.content)
                             .then(res => {
-                                console.log(res.data)
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
