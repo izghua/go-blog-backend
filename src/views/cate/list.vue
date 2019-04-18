@@ -27,7 +27,7 @@
 </template>
 <script>
 
-    import { getCateList } from '@/api/cate'
+    import { getCateList,CateDestory } from '@/api/cate'
     import { consoleLimit }  from '@/api/conf'
     export default {
         data () {
@@ -125,20 +125,20 @@
             },
 
             remove (id) {
-                // PostDestory(id)
-                //     .then(res => {
-                //         if (res.data.code === 0) {
-                //             this.$Message.success(res.data.message);
-                //             setTimeout(() => {
-                //                 this.myPage(1);
-                //             },2000)
-                //         } else {
-                //             this.$Message.error(res.data.message);
-                //
-                //         }
-                //     }).catch(err => {
-                //     this.$Message.error("操作失败"+ err);
-                // })
+                CateDestory(id)
+                    .then(res => {
+                        if (res.data.code === 0) {
+                            this.$Message.success(res.data.message);
+                            setTimeout(() => {
+                                this.myPage(1);
+                            },2000)
+                        } else {
+                            this.$Message.error(res.data.message);
+
+                        }
+                    }).catch(err => {
+                    this.$Message.error("操作失败"+ err);
+                })
             },
             edit (id) {
                 this.$router.push('/cate/update?id=' + id)

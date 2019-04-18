@@ -144,10 +144,17 @@
                     "limit": consoleLimit
                 };
                 PostTrash(params).then(res => {
-                    this.data9 = res.data.data.list;
-                    this.total = res.data.data.page.count;
-                    this.pageSize = res.data.data.page.limit;
-                    this.current = res.data.data.page.current
+                    if (res.data.data.list && res.data.data.list.length > 0) {
+                        this.data9 = res.data.data.list;
+                        this.total = res.data.data.page.count;
+                        this.pageSize = res.data.data.page.limit;
+                        this.current = res.data.data.page.current
+                    } else {
+                        this.data9 = [];
+                        this.total = 0;
+                        this.pageSize = 10;
+                        this.current = 1;
+                    }
                 }).catch(err => {
                     this.$Message.error("操作失败"+ err);
                 })

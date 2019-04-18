@@ -10,8 +10,8 @@
                         <Input v-model="formValidate.displayName" placeholder="title"></Input>
                     </FormItem>
                     <FormItem label="ParentCate" prop="parentCate">
-                        <Select v-model="formValidate.parentCate" placeholder="Select your parent category">
-                            <Option :value="0" :key="0" v-if="formValidate.category === 0" selected >顶节点</Option>
+                        <Select v-model="formValidate.category" placeholder="Select your parent category">
+                            <Option :value="0" :key="0" selected >顶节点</Option>
                             <Option  v-for="item in categories" :value="item.cates.Id" :key="item.cates.Id"><span v-html="item.html"></span>{{ item.cates.DisplayName }}</Option>
                         </Select>
                     </FormItem>
@@ -32,7 +32,7 @@
 </template>
 
 <script>
-    import { CateEdit,getCateList,CateUpdate} from '@/api/cate'
+    import { getCateList,CateCreate} from '@/api/cate'
 
     export default {
         data () {
@@ -66,23 +66,10 @@
             }
         },
         mounted() {
-            const id = this.$route.query.id;
-            this.cateId = id;
-            this.defaultData(id);
-
+            this.defaultData();
         },
         methods: {
-            defaultData (id) {
-                CateEdit(id)
-                    .then(data => {
-                        this.formValidate.name = data.data.data.Name;
-                        this.formValidate.displayName = data.data.data.DisplayName;
-                        this.formValidate.seoDescription = data.data.data.SeoDesc;
-                        this.formValidate.category = data.data.data.ParentId;
-                    })
-                    .catch(err => {
-                        this.$Message.error("操作失败"+ err);
-                    });
+            defaultData () {
                 getCateList().then(res => {
                     this.categories = res.data.data;
                 }).catch(err => {
@@ -93,7 +80,7 @@
                 let that = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        CateUpdate(that.cateId,that.formValidate.name,that.formValidate.displayName,that.formValidate.seoDescription,that.formValidate.parentCate)
+                        CateCreate(that.formValidate.name,that.formValidate.displayName,that.formValidate.seoDescription,that.formValidate.parentCate)
                             .then(res => {
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);

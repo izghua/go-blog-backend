@@ -38,3 +38,25 @@ export function CateUpdate(id,name,displayName,seoDesc,parentId) {
         config
     )
 }
+
+export function CateCreate(name,displayName,seoDesc,parentId) {
+    return axios.post(
+        'console/cate/',
+        {
+            name: name,
+            displayName: displayName,
+            seoDesc: seoDesc,
+            parentId: parentId
+        },
+        config
+    )
+}
+
+export function CateDestory(id,params) {
+    return axios.delete(
+        'console/cate/' + id,
+        {
+            params
+        }
+    )
+}

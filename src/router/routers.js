@@ -8,6 +8,7 @@ const PostUpdate = ()=>import('../views/post/update.vue');
 const PostTrash = ()=>import('../views/post/trash.vue');
 const CateList = ()=>import('../views/cate/list.vue');
 const CateUpdate = ()=>import('../views/cate/update.vue');
+const CateCreate = ()=>import('../views/cate/create.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -158,6 +159,15 @@ export default [
                   title: '修改分类'
               },
               component: CateUpdate
+          },
+          {
+              path: 'create',
+              name: 'cate_create',
+              meta: {
+                  icon: 'ios-book',
+                  title: '创建分类'
+              },
+              component: CateCreate
           },
       ]
   },

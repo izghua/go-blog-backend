@@ -19,7 +19,7 @@
                         <Button type="info" ghost>创建</Button>
                     </router-link>
                 </div>
-                <span :data9="data9"></span>
+                <!--<span :data9="data9"></span>-->
                 <Table stripe  :highlight-row=true :columns="columns10" :data="data9"></Table>
                 <div style="margin-top: 40px;text-align: center"><Page :current="current" :total="total" @on-change="changePage" :page-size="pageSize"></Page></div>
             </div>
@@ -143,7 +143,7 @@
                     }
                 ],
                 data9: [],
-                total: 0,
+                total: 1,
                 pageSize: 10,
                 current: 1,
 
@@ -160,10 +160,17 @@
                     "limit": consoleLimit
                 };
                 getPostList(params).then(res => {
-                    this.data9 = res.data.data.list;
-                    this.total = res.data.data.page.count;
-                    this.pageSize = res.data.data.page.limit;
-                    this.current = res.data.data.page.current
+                    if (res.data.data.list && res.data.data.list.length > 0) {
+                        this.data9 = res.data.data.list;
+                        this.total = res.data.data.page.count;
+                        this.pageSize = res.data.data.page.limit;
+                        this.current = res.data.data.page.current
+                    } else {
+                        this.data9 = [];
+                        this.total = 0;
+                        this.pageSize = 10;
+                        this.current = 1;
+                    }
                 }).catch(err => {
                     this.$Message.error("操作失败"+ err);
                 })
