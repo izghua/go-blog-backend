@@ -21,13 +21,14 @@
                 </div>
                 <span :data9="data9"></span>
                 <Table stripe  :highlight-row=true :columns="columns10" :data="data9"></Table>
+                <div style="margin-top: 40px;text-align: center"><Page :current="current" :total="total" @on-change="changePage" :page-size="pageSize"></Page></div>
             </div>
         </Card>
     </div>
 </template>
 <script>
 
-    import { getCateList,CateDestory } from '@/api/cate'
+    import { GetTagList } from '@/api/tag'
     import { consoleLimit }  from '@/api/conf'
     export default {
         data () {
@@ -40,26 +41,27 @@
                             return h('div', {
                                 props: {
                                 },
-                            },params.row.cates.Id)
+                            },params.row.Id)
                         }
                     },
                     {
-                        title: 'Category',
-                        key: 'category',
+                        title: 'Tag',
+                        key: 'Tag',
                         render: (h,params) => {
-                            return h('Tooltip', {
+                            return h('div', {
                                 props: {
-                                    content:  params.row.cates.SeoDesc,
-                                    innerHTML:params.row.html + params.row.cates.DisplayName,
                                 },
-                                style: {
-                                    maxWidth: '200'
+                            },params.row.DisplayName)
+                        }
+                    },
+                    {
+                        title: 'Num',
+                        key: 'Num',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
                                 },
-                                domProps: {
-                                    content:  params.row.cates.DisplayName,
-                                    innerHTML: params.row.html + params.row.cates.DisplayName,
-                                },
-                            }, params.row.html + params.row.cates.DisplayName)
+                            },params.row.Num)
                         }
                     },
                     {
@@ -69,7 +71,7 @@
                             return h('div', {
                                 props: {
                                 },
-                            },params.row.cates.CreatedAt)
+                            },params.row.CreatedAt)
                         }
                     },
                     {
@@ -109,6 +111,9 @@
                     }
                 ],
                 data9: [],
+                total: 0,
+                pageSize: 10,
+                current: 1,
             }
         },
         mounted() {
@@ -121,7 +126,7 @@
                     "page": page,
                     "limit": consoleLimit
                 };
-                getCateList(params).then(res => {
+                GetTagList(params).then(res => {
                     this.data9 = res.data.data;
                 }).catch(err => {
                     this.$Message.error("操作失败"+ err);
@@ -132,20 +137,20 @@
             },
 
             remove (id) {
-                CateDestory(id)
-                    .then(res => {
-                        if (res.data.code === 0) {
-                            this.$Message.success(res.data.message);
-                            setTimeout(() => {
-                                this.myPage(1);
-                            },2000)
-                        } else {
-                            this.$Message.error(res.data.message);
-
-                        }
-                    }).catch(err => {
-                    this.$Message.error("操作失败"+ err);
-                })
+                // CateDestory(id)
+                //     .then(res => {
+                //         if (res.data.code === 0) {
+                //             this.$Message.success(res.data.message);
+                //             setTimeout(() => {
+                //                 this.myPage(1);
+                //             },2000)
+                //         } else {
+                //             this.$Message.error(res.data.message);
+                //
+                //         }
+                //     }).catch(err => {
+                //     this.$Message.error("操作失败"+ err);
+                // })
             },
             edit (id) {
                 this.$router.push('/cate/update?id=' + id)

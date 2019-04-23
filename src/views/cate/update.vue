@@ -11,14 +11,13 @@
                     </FormItem>
                     <FormItem label="ParentCate" prop="parentCate">
                         <Select v-model="formValidate.parentCate" placeholder="Select your parent category">
-                            <Option :value="0" :key="0" v-if="formValidate.category === 0" selected >顶节点</Option>
+                            <!--<Option :value="0" :key="0" >顶节点</Option>-->
                             <Option  v-for="item in categories" :value="item.cates.Id" :key="item.cates.Id"><span v-html="item.html"></span>{{ item.cates.DisplayName }}</Option>
                         </Select>
                     </FormItem>
                     <FormItem label="SeoDescription" prop="seoDescription">
                         <Input v-model="formValidate.seoDescription" type="textarea" :autosize="{minRows: 2}" placeholder="Enter seo description..."></Input>
                     </FormItem>
-
                     <FormItem>
                         <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
                         <Button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
@@ -54,7 +53,7 @@
                         { max:100, message: 'The displayName length is too long', trigger: 'blur'}
                     ],
                     parentCate: [
-                        // { required: true, message: 'Please select the category', trigger: 'change' },
+                        // { required: true, message: 'Please select the category232', trigger: 'change' },
                         { type: 'integer', message: 'Please select the category', trigger: 'change' },
                     ],
                     seoDescription: [
@@ -78,13 +77,15 @@
                         this.formValidate.name = data.data.data.Name;
                         this.formValidate.displayName = data.data.data.DisplayName;
                         this.formValidate.seoDescription = data.data.data.SeoDesc;
-                        this.formValidate.category = data.data.data.ParentId;
+                        this.formValidate.parentCate = data.data.data.ParentId;
                     })
                     .catch(err => {
                         this.$Message.error("操作失败"+ err);
                     });
                 getCateList().then(res => {
-                    this.categories = res.data.data;
+                    var catess = [];
+                    catess.push({"cates":{"Id":0,"DisplayName":"顶节点"},"html":""});
+                    this.categories =  catess.concat(res.data.data);
                 }).catch(err => {
                     this.$Message.error("操作失败"+ err);
                 })

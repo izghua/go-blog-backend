@@ -9,6 +9,8 @@ const PostTrash = ()=>import('../views/post/trash.vue');
 const CateList = ()=>import('../views/cate/list.vue');
 const CateUpdate = ()=>import('../views/cate/update.vue');
 const CateCreate = ()=>import('../views/cate/create.vue');
+const TagIndex = ()=>import('../views/tag/index.vue');
+const TagCreate = ()=>import('../views/tag/create.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -171,6 +173,45 @@ export default [
           },
       ]
   },
+  {
+    path: '/tag',
+    name: 'tag',
+    meta: {
+        icon: 'ios-book',
+        title: '标签管理'
+    },
+    component: Main,
+    children: [
+        {
+            path: 'list',
+            name: 'tag_list',
+            meta: {
+                icon: 'ios-book',
+                title: '标签列表'
+            },
+            component: TagIndex
+        },
+        {
+            path: 'update',
+            name: 'tag_update',
+            meta: {
+                hideInMenu: true,
+                icon: 'ios-book',
+                title: '修改标签'
+            },
+            component: CateUpdate
+        },
+        {
+            path: 'create',
+            name: 'tag_create',
+            meta: {
+                icon: 'ios-book',
+                title: '创建标签'
+            },
+            component: TagCreate
+        },
+    ]
+},
   // {
   //   path: '/user',
   //   name: 'user',
