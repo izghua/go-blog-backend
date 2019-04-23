@@ -26,14 +26,13 @@ export function TagEdit(id,params){
     )
 }
 
-export function TagUpdate(id,name,displayName,seoDesc,parentId) {
+export function TagUpdate(id,name,displayName,seoDesc) {
     return axios.put(
         'console/tag/'+ id,
         {
             name: name,
             displayName: displayName,
             seoDesc: seoDesc,
-            parentId: parentId
         },
         config
     )

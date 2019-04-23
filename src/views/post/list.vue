@@ -29,7 +29,7 @@
 <script>
 
     import { getPostList,PostDestory } from '@/api/post'
-    import { consoleLimit }  from '@/api/conf'
+    import conf  from '@/api/conf'
     import expandRow from './expand-post.vue';
     export default {
         data () {
@@ -157,7 +157,7 @@
                 let that  = this;
                 let params = {
                     "page": page,
-                    "limit": consoleLimit
+                    "limit": conf.consoleLimit
                 };
                 getPostList(params).then(res => {
                     if (res.data.data.list && res.data.data.list.length > 0) {

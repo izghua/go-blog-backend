@@ -11,6 +11,7 @@ const CateUpdate = ()=>import('../views/cate/update.vue');
 const CateCreate = ()=>import('../views/cate/create.vue');
 const TagIndex = ()=>import('../views/tag/index.vue');
 const TagCreate = ()=>import('../views/tag/create.vue');
+const TagUpdate = ()=>import('../views/tag/update.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -199,7 +200,7 @@ export default [
                 icon: 'ios-book',
                 title: '修改标签'
             },
-            component: CateUpdate
+            component: TagUpdate
         },
         {
             path: 'create',

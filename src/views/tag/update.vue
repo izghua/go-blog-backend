@@ -17,13 +17,15 @@
                         <Button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
                     </FormItem>
                 </Form>
+
+
             </div>
         </Card>
     </div>
 </template>
 
 <script>
-    import { TagCreate} from '@/api/tag'
+    import { TagEdit,TagUpdate} from '@/api/tag'
 
     export default {
         data () {
@@ -47,14 +49,32 @@
                         { max:250, message: 'The seo description length is too long', trigger: 'blur'}
                     ],
                 },
+                tagId: 0,
             }
         },
+        mounted() {
+            const id = this.$route.query.id;
+            this.tagId = id;
+            this.defaultData(id);
+
+        },
         methods: {
+            defaultData (id) {
+                TagEdit(id)
+                    .then(data => {
+                        this.formValidate.name = data.data.data.Name;
+                        this.formValidate.displayName = data.data.data.DisplayName;
+                        this.formValidate.seoDescription = data.data.data.SeoDesc;
+                    })
+                    .catch(err => {
+                        this.$Message.error("操作失败"+ err);
+                    });
+            },
             handleSubmit (name) {
                 let that = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        TagCreate(that.formValidate.name,that.formValidate.displayName,that.formValidate.seoDescription)
+                        TagUpdate(that.tagId,that.formValidate.name,that.formValidate.displayName,that.formValidate.seoDescription)
                             .then(res => {
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);

@@ -28,7 +28,7 @@
 <script>
 
     import { getCateList,CateDestory } from '@/api/cate'
-    import { consoleLimit }  from '@/api/conf'
+    import conf  from '@/api/conf'
     export default {
         data () {
             return {
@@ -47,19 +47,36 @@
                         title: 'Category',
                         key: 'category',
                         render: (h,params) => {
-                            return h('Tooltip', {
-                                props: {
-                                    content:  params.row.cates.SeoDesc,
-                                    innerHTML:params.row.html + params.row.cates.DisplayName,
-                                },
-                                style: {
-                                    maxWidth: '200'
-                                },
-                                domProps: {
-                                    content:  params.row.cates.DisplayName,
-                                    innerHTML: params.row.html + params.row.cates.DisplayName,
-                                },
-                            }, params.row.html + params.row.cates.DisplayName)
+                            return h('Tooltip',
+                                 {
+                                    domProps: {
+                                        innerHTML: params.row.html + params.row.cates.DisplayName,
+                                    },
+                                });
+                                // {
+                                //     props: {
+                                //         content:  params.row.cates.SeoDesc,
+                                //         // innerHTML:params.row.html + params.row.cates.DisplayName,
+                                //     },
+                                //     style: {
+                                //         maxWidth: '200'
+                                //     },
+                                // }
+
+                            // return h('Tooltip', {
+                            //     domProps: {
+                            //         // content:  params.row.cates.DisplayName,
+                            //         innerHTML: params.row.html + params.row.cates.DisplayName,
+                            //     }
+                            // }, {
+                            //     domProps: {
+                            //         content:  params.row.cates.SeoDesc,
+                            //         innerHTML:params.row.html + params.row.cates.DisplayName,
+                            //     },
+                            //     style: {
+                            //         maxWidth: '200'
+                            //     },
+                            // })
                         }
                     },
                     {
@@ -119,7 +136,7 @@
                 let that  = this;
                 let params = {
                     "page": page,
-                    "limit": consoleLimit
+                    "limit": conf.consoleLimit
                 };
                 getCateList(params).then(res => {
                     this.data9 = res.data.data;

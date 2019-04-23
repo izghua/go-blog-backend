@@ -28,8 +28,8 @@
 </template>
 <script>
 
-    import { GetTagList } from '@/api/tag'
-    import { consoleLimit }  from '@/api/conf'
+    import { GetTagList,TagDestory } from '@/api/tag'
+    import conf  from '@/api/conf'
     export default {
         data () {
             return {
@@ -91,7 +91,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.edit(params.row.cates.Id)
+                                            this.edit(params.row.Id)
                                         }
                                     }
                                 }, '修改'),
@@ -102,7 +102,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.remove(params.row.cates.Id)
+                                            this.remove(params.row.Id)
                                         }
                                     }
                                 }, '删除')
@@ -124,10 +124,20 @@
                 let that  = this;
                 let params = {
                     "page": page,
-                    "limit": consoleLimit
+                    "limit": conf.consoleLimit
                 };
                 GetTagList(params).then(res => {
-                    this.data9 = res.data.data;
+                    if (res.data.data.list && res.data.data.list.length > 0) {
+                        this.data9 = res.data.data.list;
+                        this.total = res.data.data.page.count;
+                        this.pageSize = res.data.data.page.limit;
+                        this.current = res.data.data.page.current
+                    } else {
+                        this.data9 = [];
+                        this.total = 0;
+                        this.pageSize = 10;
+                        this.current = 1;
+                    }
                 }).catch(err => {
                     this.$Message.error("操作失败"+ err);
                 })
@@ -137,23 +147,23 @@
             },
 
             remove (id) {
-                // CateDestory(id)
-                //     .then(res => {
-                //         if (res.data.code === 0) {
-                //             this.$Message.success(res.data.message);
-                //             setTimeout(() => {
-                //                 this.myPage(1);
-                //             },2000)
-                //         } else {
-                //             this.$Message.error(res.data.message);
-                //
-                //         }
-                //     }).catch(err => {
-                //     this.$Message.error("操作失败"+ err);
-                // })
+                TagDestory(id)
+                    .then(res => {
+                        if (res.data.code === 0) {
+                            this.$Message.success(res.data.message);
+                            setTimeout(() => {
+                                this.myPage(1);
+                            },2000)
+                        } else {
+                            this.$Message.error(res.data.message);
+
+                        }
+                    }).catch(err => {
+                    this.$Message.error("操作失败"+ err);
+                })
             },
             edit (id) {
-                this.$router.push('/cate/update?id=' + id)
+                this.$router.push('/tag/update?id=' + id)
             },
         }
     }
