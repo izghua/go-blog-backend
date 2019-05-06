@@ -213,6 +213,35 @@ export default [
         },
     ]
 },
+  {
+    path: '/system',
+    name: 'system',
+    meta: {
+        icon: 'ios-book',
+        title: '系统管理'
+    },
+    component: Main,
+    children: [
+        {
+            path: 'index',
+            name: 'system_index',
+            meta: {
+                icon: 'ios-book',
+                title: '系统设置'
+            },
+            component: TagIndex
+        },
+        {
+            path: 'link',
+            name: 'system_link',
+            meta: {
+                icon: 'ios-book',
+                title: '友链'
+            },
+            component: TagCreate
+        },
+    ]
+    },
   // {
   //   path: '/user',
   //   name: 'user',
