@@ -6,16 +6,16 @@
                     <FormItem label="Title" prop="title" >
                         <Input v-model="formValidate.title" placeholder="title"></Input>
                     </FormItem>
-                    <FormItem label="Keywords" prop="Keywords" >
+                    <FormItem label="Keywords" prop="keywords" >
                         <Input v-model="formValidate.keywords" placeholder="Keywords"></Input>
                     </FormItem>
-                    <FormItem label="Description" prop="Description">
+                    <FormItem label="Description" prop="description">
                         <Input v-model="formValidate.description" type="textarea" :autosize="{minRows: 2}" placeholder="Enter  description..."></Input>
                     </FormItem>
-                    <FormItem label="RecordNumber" prop="RecordNumber" >
+                    <FormItem label="RecordNumber" prop="recordNumber" >
                         <Input v-model="formValidate.recordNumber" placeholder="RecordNumber"></Input>
                     </FormItem>
-                    <FormItem label="Theme" prop="Theme">
+                    <FormItem label="Theme" prop="theme">
                         <Select v-model="formValidate.theme" placeholder="Select your theme">
                             <Option  v-for="item in themes" :value="item" :key="item">{{ item }}</Option>
                         </Select>
@@ -61,7 +61,7 @@
                     ],
                     recordNumber: [
                         { required: true, message: 'The recordNumber can not be empty', trigger: 'blur' },
-                        { max:250, message: 'The recordNumber length is too long', trigger: 'blur'}
+                        { max:50, message: 'The recordNumber length is too long', trigger: 'blur'}
                     ],
                     theme: [
                         // { required: true, message: 'The theme can not be empty', trigger: 'blur' },
