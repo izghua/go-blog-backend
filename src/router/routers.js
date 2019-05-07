@@ -12,6 +12,7 @@ const CateCreate = ()=>import('../views/cate/create.vue');
 const TagIndex = ()=>import('../views/tag/index.vue');
 const TagCreate = ()=>import('../views/tag/create.vue');
 const TagUpdate = ()=>import('../views/tag/update.vue');
+const SystemIndex = ()=>import('../views/system/index.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -229,7 +230,7 @@ export default [
                 icon: 'ios-book',
                 title: '系统设置'
             },
-            component: TagIndex
+            component: SystemIndex
         },
         {
             path: 'link',
