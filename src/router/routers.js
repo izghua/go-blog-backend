@@ -13,6 +13,8 @@ const TagIndex = ()=>import('../views/tag/index.vue');
 const TagCreate = ()=>import('../views/tag/create.vue');
 const TagUpdate = ()=>import('../views/tag/update.vue');
 const SystemIndex = ()=>import('../views/system/index.vue');
+const LinkIndex = ()=>import('../views/link/index.vue');
+const LinkCreate = ()=>import('../views/link/create.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -215,33 +217,53 @@ export default [
     ]
 },
   {
-    path: '/system',
-    name: 'system',
-    meta: {
-        icon: 'ios-book',
-        title: '系统管理'
+        path: '/system',
+        name: 'system',
+        meta: {
+            icon: 'ios-book',
+            title: '系统管理'
+        },
+        component: Main,
+        children: [
+            {
+                path: 'index',
+                name: 'system_index',
+                meta: {
+                    icon: 'ios-book',
+                    title: '系统设置'
+                },
+                component: SystemIndex
+            },
+        ]
     },
-    component: Main,
-    children: [
-        {
-            path: 'index',
-            name: 'system_index',
-            meta: {
-                icon: 'ios-book',
-                title: '系统设置'
-            },
-            component: SystemIndex
+    {
+        path: '/link',
+        name: 'link',
+        meta: {
+            icon: 'ios-book',
+            title: '友链管理'
         },
-        {
-            path: 'link',
-            name: 'system_link',
-            meta: {
-                icon: 'ios-book',
-                title: '友链'
+        component: Main,
+        children: [
+            {
+                path: 'index',
+                name: 'link_index',
+                meta: {
+                    icon: 'ios-book',
+                    title: '友链列表'
+                },
+                component: LinkIndex
             },
-            component: TagCreate
-        },
-    ]
+            {
+                path: 'create',
+                name: 'link_create',
+                meta: {
+                    icon: 'ios-book',
+                    title: '新增友链'
+                },
+                component: LinkCreate
+            },
+        ]
     },
   // {
   //   path: '/user',
