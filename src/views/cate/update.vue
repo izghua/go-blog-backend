@@ -68,7 +68,6 @@
             const id = this.$route.query.id;
             this.cateId = id;
             this.defaultData(id);
-
         },
         methods: {
             defaultData (id) {

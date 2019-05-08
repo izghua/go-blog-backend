@@ -10,7 +10,7 @@
                         <Input v-model="formValidate.link" placeholder="link"></Input>
                     </FormItem>
                     <FormItem label="Order" prop="order">
-                        <Input v-model="formValidate.order" number placeholder="sort"></Input>
+                        <Input v-model="formValidate.order"  number placeholder="sort"></Input>
                     </FormItem>
 
                     <FormItem>
@@ -26,7 +26,7 @@
 </template>
 
 <script>
-    import { LinkStore} from '@/api/link'
+    import { LinkEdit,LinkUpdate} from '@/api/link'
 
     export default {
         data () {
@@ -49,14 +49,31 @@
                         { required: true,type: 'number',min: 0, message: 'The order cannot be empty', trigger: 'blur' },
                     ],
                 },
+                linkId: 0
             }
         },
+        mounted() {
+            const id = this.$route.query.id;
+            this.linkId = id;
+            this.defaultData(id);
+        },
         methods: {
+            defaultData (id) {
+                LinkEdit(id)
+                    .then(data => {
+                        this.formValidate.name = data.data.data.Name;
+                        this.formValidate.link = data.data.data.Link;
+                        this.formValidate.order = data.data.data.Order;
+                    })
+                    .catch(err => {
+                        this.$Message.error("操作失败"+ err);
+                    });
+            },
             handleSubmit (name) {
                 let that = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
-                        LinkStore(that.formValidate.name,that.formValidate.link,that.formValidate.order)
+                        LinkUpdate(that.linkId,that.formValidate.name,that.formValidate.link,that.formValidate.order)
                             .then(res => {
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);

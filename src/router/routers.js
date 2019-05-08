@@ -15,6 +15,7 @@ const TagUpdate = ()=>import('../views/tag/update.vue');
 const SystemIndex = ()=>import('../views/system/index.vue');
 const LinkIndex = ()=>import('../views/link/index.vue');
 const LinkCreate = ()=>import('../views/link/create.vue');
+const LinkUpdate = ()=>import('../views/link/update.vue');
 
 /**
  * iview-simple-admin中meta除了原生参数外可配置的参数:
@@ -253,6 +254,16 @@ export default [
                     title: '友链列表'
                 },
                 component: LinkIndex
+            },
+            {
+                path: 'update',
+                name: 'link_update',
+                meta: {
+                    hideInMenu: true,
+                    icon: 'ios-book',
+                    title: '修改友链'
+                },
+                component: LinkUpdate
             },
             {
                 path: 'create',

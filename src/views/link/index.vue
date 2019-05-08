@@ -21,14 +21,14 @@
                 </div>
                 <span :data9="data9"></span>
                 <Table stripe  :highlight-row=true :columns="columns10" :data="data9"></Table>
+                <div style="margin-top: 40px;text-align: center"><Page :current="current" :total="total" @on-change="changePage" :page-size="pageSize"></Page></div>
             </div>
         </Card>
     </div>
 </template>
 <script>
 
-    import { getCateList,CateDestory } from '@/api/cate'
-    import { LinkIndex} from '@/api/link'
+    import { LinkIndex,LinkDestroy} from '@/api/link'
     import conf  from '@/api/conf'
     export default {
         data () {
@@ -52,6 +52,16 @@
                                 props: {
                                 },
                             },params.row.Name)
+                        }
+                    },
+                    {
+                        title: 'Link',
+                        key: 'link',
+                        render: (h,params) => {
+                            return h('div', {
+                                props: {
+                                },
+                            },params.row.Link)
                         }
                     },
                     {
@@ -91,7 +101,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.edit(params.row.cates.Id)
+                                            this.edit(params.row.Id)
                                         }
                                     }
                                 }, '修改'),
@@ -102,7 +112,7 @@
                                     },
                                     on: {
                                         click: () => {
-                                            this.remove(params.row.cates.Id)
+                                            this.remove(params.row.Id)
                                         }
                                     }
                                 }, '删除')
@@ -111,6 +121,9 @@
                     }
                 ],
                 data9: [],
+                total: 1,
+                pageSize: 10,
+                current: 1,
             }
         },
         mounted() {
@@ -124,7 +137,17 @@
                     "limit": conf.consoleLimit
                 };
                 LinkIndex(params).then(res => {
-                    this.data9 = res.data.data.list;
+                    if (res.data.data.list && res.data.data.list.length > 0) {
+                        this.data9 = res.data.data.list;
+                        this.total = res.data.data.page.count;
+                        this.pageSize = res.data.data.page.limit;
+                        this.current = res.data.data.page.current
+                    } else {
+                        this.data9 = [];
+                        this.total = 0;
+                        this.pageSize = 10;
+                        this.current = 1;
+                    }
                 }).catch(err => {
                     this.$Message.error("操作失败"+ err);
                 })
@@ -134,7 +157,7 @@
             },
 
             remove (id) {
-                CateDestory(id)
+                LinkDestroy(id)
                     .then(res => {
                         if (res.data.code === 0) {
                             this.$Message.success(res.data.message);
@@ -150,7 +173,7 @@
                 })
             },
             edit (id) {
-                this.$router.push('/cate/update?id=' + id)
+                this.$router.push('/link/update?id=' + id)
             },
         }
     }

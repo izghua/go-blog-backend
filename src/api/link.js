@@ -49,7 +49,7 @@ export function LinkUpdate(id,name,link,order) {
     )
 }
 
-export function LinkDestory(id,params) {
+export function LinkDestroy(id,params) {
     return axios.delete(
         'console/link/' + id,
         {
