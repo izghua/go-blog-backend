@@ -14,6 +14,25 @@
         </span>
       </Input>
     </FormItem>
+    <FormItem prop="captcha">
+
+      <Row>
+        <Col span="11">
+          <Input  v-model="form.captcha" placeholder="请输入验证码">
+            <span slot="prepend">
+              <Icon :size="14" type="md-lock"></Icon>
+            </span>
+          </Input>
+        </Col>
+        <Col span="2" style="text-align: center"></Col>
+        <Col span="11">
+          <img :src="captchaSrc" @click="changeCaptcha()" alt="图形验证码" style="height: 32px;margin-left: 10px;margin-right: 10px">
+        </Col>
+      </Row>
+
+
+
+    </FormItem>
     <FormItem>
       <Button @click="handleSubmit" type="primary" long>登录</Button>
     </FormItem>
@@ -21,6 +40,7 @@
 </template>
 <script>
 export default {
+    captchaSrc: '',
   name: 'LoginForm',
   props: {
     userNameRules: {
@@ -43,9 +63,10 @@ export default {
   data () {
     return {
       form: {
-        userName: 'super_admin',
+        userName: '',
         password: ''
-      }
+      },
+        captchaSrc:'',
     }
   },
   computed: {
