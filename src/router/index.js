@@ -5,19 +5,18 @@ import routes from './routers'
 // import iView from 'iview'
 import { canTurnTo } from '@/libs/app'
 
-Vue.use(Router)
+Vue.use(Router);
 const router = new Router({
   routes,
   // mode: 'history'
 })
 
-console.log(routes,"卧槽");
 
 // 登陆页name
-const LOGIN_PAGE_NAME = 'login'
+const LOGIN_PAGE_NAME = 'login';
 
 const turnTo = (to, access, next) => {
-  if (canTurnTo(to.name, access, routes)) next() // 有权限，可访问
+  if (canTurnTo(to.name, access, routes)) next();// 有权限，可访问
   else next({ replace: true, name: 'error_401' }) // 无权限，重定向到401页面
 }
 

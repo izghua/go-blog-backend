@@ -35,7 +35,7 @@
   </Form>
 </template>
 <script>
-    import { Register,AuthRegister } from '@/api/auth'
+    import { Login,AuthLogin } from '@/api/auth'
 
     export default {
       captchaSrc: '',
@@ -93,7 +93,7 @@
         handleSubmit () {
           this.$refs.loginForm.validate((valid) => {
             if (valid) {
-                AuthRegister(this.captchaKey,this.form.email,this.form.password,this.form.captcha)
+                AuthLogin(this.captchaKey,this.form.email,this.form.password,this.form.captcha)
                   .then(res => {
                     if (res.data.code === 0) {
                         this.$Message.success(res.data.message);
@@ -101,6 +101,7 @@
                         //     this.$router.push('/link/index')
                         // },2000)
                     } else {
+                        this.changeCaptcha();
                         this.$Message.error(res.data.message);
                     }
                   }).catch(err => {
@@ -114,10 +115,10 @@
           })
         },
         changeCaptcha() {
-          Register()
-            .then(res => {
-                this.captchaSrc = res.data.data.png;
-                this.captchaKey = res.data.data.key;
+          Login()
+          .then(res => {
+              this.captchaSrc = res.data.data.png;
+              this.captchaKey = res.data.data.key;
           })
         }
       }

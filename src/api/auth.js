@@ -30,3 +30,25 @@ export function AuthRegister(captchaKey,email,password,captcha) {
         config
     )
 }
+
+export function Login(params){
+    return axios.get(
+        '/console/login',
+        {
+            params
+        }
+    )
+}
+
+export function AuthLogin(captchaKey,email,password,captcha) {
+    return axios.post(
+        '/console/login',
+        {
+            captchaKey: captchaKey,
+            email: email,
+            password: password,
+            captcha: captcha
+        },
+        config
+    )
+}

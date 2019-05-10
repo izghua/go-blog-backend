@@ -40,7 +40,15 @@ export default [
     },
     component: () => import('../views/login/login.vue')
   },
-
+    {
+        path: '/register',
+        name: 'register',
+        meta: {
+            title: 'Register - 注册',
+            hideInMenu: true
+        },
+        component: () => import('../views/register/register.vue')
+    },
   // 首页
   {
     path: '/',
