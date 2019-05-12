@@ -110,6 +110,7 @@
                                     // setTimeout(() => {
                                     //     this.$router.push('/link/index')
                                     // },2000)
+                                    
                                 } else {
                                     this.changeCaptcha();
                                     this.$Message.error(res.data.message);
