@@ -10,7 +10,7 @@ let config = {
 
 export function GetTagList(params){
     return axios.get(
-        '/console/tag',
+        '/console/tag/',
         {
             params
         }

@@ -107,12 +107,11 @@
                             .then(res => {
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
-                                    // setTimeout(() => {
-                                    //     this.$router.push('/link/index')
-                                    // },2000)
-                                    
+                                    setTimeout(() => {
+                                        this.$router.push('/login')
+                                    },2000)
+
                                 } else {
-                                    this.changeCaptcha();
                                     this.$Message.error(res.data.message);
                                 }
                             }).catch(err => {

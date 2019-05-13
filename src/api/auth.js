@@ -18,14 +18,13 @@ export function Register(params){
     )
 }
 
-export function AuthRegister(captchaKey,email,password,captcha) {
+export function AuthRegister(userName,email,password) {
     return axios.post(
         '/console/register/',
         {
-            captchaKey: captchaKey,
+            userName: userName,
             email: email,
             password: password,
-            captcha: captcha
         },
         config
     )

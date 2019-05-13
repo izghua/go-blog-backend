@@ -36,6 +36,7 @@
 </template>
 <script>
     import { Login,AuthLogin } from '@/api/auth'
+    import { setCookie } from '@/libs/cookie'
 
     export default {
       captchaSrc: '',
@@ -97,9 +98,11 @@
                   .then(res => {
                     if (res.data.code === 0) {
                         this.$Message.success(res.data.message);
-                        // setTimeout(() => {
-                        //     this.$router.push('/link/index')
-                        // },2000)
+                        setCookie('token',res.data.data);
+
+                        setTimeout(() => {
+                            this.$router.push('/home')
+                        },1000)
                     } else {
                         this.changeCaptcha();
                         this.$Message.error(res.data.message);

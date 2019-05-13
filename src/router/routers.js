@@ -77,27 +77,6 @@ export default [
       }
     ]
   },
-  // {
-  //   path:"/post",
-  //   name:'post',
-  //   meta: {
-  //     hideInBread: true,
-  //     icon: 'ios-book',
-  //     title: '文章管理'
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'list',
-  //       name: 'post_list',
-  //       meta: {
-  //         icon: 'ios-book',
-  //         title: '文章管理'
-  //       },
-  //       component: Post,
-  //     },
-  //   ]
-  // },
   {
     path: '/post',
     name: 'post',
@@ -284,97 +263,6 @@ export default [
             },
         ]
     },
-  // {
-  //   path: '/user',
-  //   name: 'user',
-  //   meta: {
-  //      hideInBread: true,
-  //      icon: 'md-person',
-  //      title: '用户管理'
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'list',
-  //       name: 'user_list',
-  //       meta: {
-  //         icon: 'md-person',
-  //         title: '用户管理'
-  //       },
-  //       component: User,
-  //     },
-  //   ]
-  // },
-  //
-  // {
-  //   path: '/multilevel',
-  //   name: 'multilevel',
-  //   meta: {
-  //     icon: 'md-menu',
-  //     title: '多级菜单'
-  //   },
-  //   component: Main,
-  //   children: [
-  //     {
-  //       path: 'level_2_1',
-  //       name: 'level_2_1',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         title: '二级-1'
-  //       },
-  //       component: () => import('../views/multilevel/level-2-1.vue')
-  //     },
-  //     {
-  //       path: 'level_2_2',
-  //       name: 'level_2_2',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         showAlways: true,
-  //         title: '二级-2'
-  //       },
-  //       component: parentView,
-  //       children: [
-  //         {
-  //           path: 'level_2_2_1',
-  //           name: 'level_2_2_1',
-  //           meta: {
-  //             icon: 'md-funnel',
-  //             title: '三级'
-  //           },
-  //           component: () => import('../views/multilevel/level-2-2/level-2-2-1.vue')
-  //         },
-  //         {
-  //           path: 'level_2_2_2',
-  //           name: 'level_2_2_2',
-  //           meta: {
-  //             icon: 'md-funnel',
-  //             title: '三级'
-  //           },
-  //           component: () => import('../views/multilevel/level-2-2/level-2-2-2.vue')
-  //         }
-  //       ]
-  //     },
-  //     {
-  //       path: 'level_2_3',
-  //       name: 'level_2_3',
-  //       meta: {
-  //         icon: 'md-funnel',
-  //         title: '二级-3'
-  //       },
-  //       component: () => import('../views/multilevel/level-2-3.vue')
-  //     }
-  //   ]
-  // },
-  // {
-  //   path: '',
-  //   name: 'doc',
-  //   meta: {
-  //     title: '文档',
-  //     href: 'https://lison16.github.io/iview-admin-doc/#/',
-  //     icon: 'ios-book'
-  //   }
-  // },
-
   {
     path: '/message',
     name: 'message',
