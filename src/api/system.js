@@ -29,3 +29,13 @@ export function SystemUpdate(id,title,keywords,description,recordNum,theme) {
         config
     )
 }
+
+
+export function HomeIndex(params){
+    return axios.get(
+        '/console/home/',
+        {
+            params
+        }
+    )
+}
