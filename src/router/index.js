@@ -15,6 +15,7 @@ const router = new Router({
 
 // 登陆页name
 const LOGIN_PAGE_NAME = 'login';
+const REGISTER_PAGE_NAME = 'register';
 
 const turnTo = (to, access, next) => {
   if (canTurnTo(to.name, access, routes)) next();// 有权限，可访问
@@ -29,12 +30,12 @@ router.beforeEach((to, from, next) => {
   iView.LoadingBar.start();  // 开启loading
   const token = getCookie("token")  // 获得token getToken方法自定义
     console.log(token,"jieguo ")
-  if (!token && to.name !== LOGIN_PAGE_NAME) {
+  if (!token && to.name !== LOGIN_PAGE_NAME && to.name !== REGISTER_PAGE_NAME) {
     // 未登录且要跳转的页面不是登录页
     next({
       name: LOGIN_PAGE_NAME // 跳转到登录页
     })
-  } else if (!token && to.name === LOGIN_PAGE_NAME) {
+  } else if (!token && (to.name === LOGIN_PAGE_NAME || to.name === REGISTER_PAGE_NAME)) {
     // 未登陆且要跳转的页面是登录页
     next() // 跳转
   } else if (token && to.name === LOGIN_PAGE_NAME) {
