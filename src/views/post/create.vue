@@ -38,6 +38,7 @@
 
 <script>
     import { PostStore,PostCreate } from '@/api/post'
+    import { getCookie } from '@/libs/cookie'
 
     export default {
         data () {
@@ -59,7 +60,8 @@
                 config: {
                     uploadForm: {
                         token: '',
-                        key: ''
+                        key: '',
+                        'upload-token': getCookie('token'),
                     },
                     action: "./",
                     maxSize: 5120
@@ -90,8 +92,8 @@
             defaultData () {
                 PostCreate()
                 .then(data => {
-                    this.tags = data.data.data.tags
-                    this.categories = data.data.data.cates
+                    this.tags = data.data.data.tags;
+                    this.categories = data.data.data.cates;
                     this.config.action = data.data.data.imgUploadUrl
                 })
                 .catch(() => {
