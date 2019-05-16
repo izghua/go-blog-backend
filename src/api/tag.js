@@ -28,7 +28,7 @@ export function TagEdit(id,params){
 
 export function TagUpdate(id,name,displayName,seoDesc) {
     return axios.put(
-        'console/tag/'+ id,
+        '/console/tag/'+ id,
         {
             name: name,
             displayName: displayName,
@@ -40,7 +40,7 @@ export function TagUpdate(id,name,displayName,seoDesc) {
 
 export function TagCreate(name,displayName,seoDesc) {
     return axios.post(
-        'console/tag/',
+        '/console/tag/',
         {
             name: name,
             displayName: displayName,
@@ -52,7 +52,7 @@ export function TagCreate(name,displayName,seoDesc) {
 
 export function TagDestory(id,params) {
     return axios.delete(
-        'console/tag/' + id,
+        '/console/tag/' + id,
         {
             params
         }

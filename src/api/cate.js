@@ -28,7 +28,7 @@ export function CateEdit(id,params){
 
 export function CateUpdate(id,name,displayName,seoDesc,parentId) {
     return axios.put(
-        'console/cate/'+ id,
+        '/console/cate/'+ id,
         {
             name: name,
             displayName: displayName,
@@ -41,7 +41,7 @@ export function CateUpdate(id,name,displayName,seoDesc,parentId) {
 
 export function CateCreate(name,displayName,seoDesc,parentId) {
     return axios.post(
-        'console/cate/',
+        '/console/cate/',
         {
             name: name,
             displayName: displayName,
@@ -54,7 +54,7 @@ export function CateCreate(name,displayName,seoDesc,parentId) {
 
 export function CateDestory(id,params) {
     return axios.delete(
-        'console/cate/' + id,
+        '/console/cate/' + id,
         {
             params
         }

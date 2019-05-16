@@ -18,7 +18,7 @@ export function SystemIndex(params){
 
 export function SystemUpdate(id,title,keywords,description,recordNum,theme) {
     return axios.put(
-        'console/system/'+ id,
+        '/console/system/'+ id,
         {
             title: title,
             keywords: keywords,

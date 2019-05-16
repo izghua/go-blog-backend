@@ -27,7 +27,7 @@ export function getPostList(params){
 
 export function PostCreate(params) {
     return axios.get(
-        'console/post/create',
+        '/console/post/create',
         {
             params
         }
@@ -36,7 +36,7 @@ export function PostCreate(params) {
 
 export function PostEdit(id,params) {
     return axios.get(
-        'console/post/edit/' + id,
+        '/console/post/edit/' + id,
         {
             params
         }
@@ -46,7 +46,7 @@ export function PostEdit(id,params) {
 
 export function PostUpdate(id,title,category,tags,summary,content) {
     return axios.put(
-        'console/post/'+ id,
+        '/console/post/'+ id,
         {
             title: title,
             category: category,
@@ -74,7 +74,7 @@ export function PostStore(title,category,tags,summary,content) {
 
 export function PostDestory(id,params) {
     return axios.delete(
-        'console/post/' + id,
+        '/console/post/' + id,
         {
             params
         }
@@ -83,7 +83,7 @@ export function PostDestory(id,params) {
 
 export function PostTrash(params) {
     return axios.get(
-        'console/post/trash',
+        '/console/post/trash',
         {
             params
         }
@@ -93,7 +93,7 @@ export function PostTrash(params) {
 
 export function PostUnTrash(id,params) {
     return axios.put(
-        'console/post/' + id + '/trash',
+        '/console/post/' + id + '/trash',
         {
             params
         }
