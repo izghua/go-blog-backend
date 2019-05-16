@@ -196,7 +196,7 @@
                 })
             },
             edit (id) {
-                this.$router.push('/post/update?id=' + id)
+                this.$router.push('/backend/post/update?id=' + id)
             },
         }
     }

@@ -32,7 +32,7 @@ const LinkUpdate = ()=>import('../views/link/update.vue');
 
 export default [
   {
-    path: '/login',
+    path: '/backend/login',
     name: 'login',
     meta: {
       title: 'Login - 登录',
@@ -41,7 +41,7 @@ export default [
     component: () => import('../views/login/login.vue')
   },
     {
-        path: '/register',
+        path: '/backend/register',
         name: 'register',
         meta: {
             title: 'Register - 注册',
@@ -51,16 +51,16 @@ export default [
     },
   // 首页
   {
-    path: '/',
+    path: '/backend/',
     name: 'redirect',
-    redirect: '/home',
+    redirect: '/backend/home',
     meta: {
       hideInMenu: true,
       notCache: true
     },
   },
   {
-    path: '/home',
+    path: '/backend/home',
     meta: {
       hideInBread: true,
     },
@@ -78,7 +78,7 @@ export default [
     ]
   },
   {
-    path: '/post',
+    path: '/backend/post',
     name: 'post',
     meta: {
       icon: 'ios-book',
@@ -127,7 +127,7 @@ export default [
     ]
   },
   {
-      path: '/cate',
+      path: '/backend/cate',
       name: 'cate',
       meta: {
           icon: 'ios-book',
@@ -166,7 +166,7 @@ export default [
       ]
   },
   {
-    path: '/tag',
+    path: '/backend/tag',
     name: 'tag',
     meta: {
         icon: 'ios-book',
@@ -205,7 +205,7 @@ export default [
     ]
 },
   {
-        path: '/system',
+        path: '/backend/system',
         name: 'system',
         meta: {
             icon: 'ios-book',
@@ -225,7 +225,7 @@ export default [
         ]
     },
     {
-        path: '/link',
+        path: '/backend/link',
         name: 'link',
         meta: {
             icon: 'ios-book',
@@ -264,7 +264,7 @@ export default [
         ]
     },
   {
-    path: '/message',
+    path: '/backend/message',
     name: 'message',
     component: Main,
     meta: {
@@ -285,7 +285,7 @@ export default [
   },
 
   {
-    path: '/401',
+    path: '/backend/401',
     name: 'error_401',
     meta: {
       hideInMenu: true
@@ -293,7 +293,7 @@ export default [
     component: () => import('../views/error-page/401.vue')
   },
   {
-    path: '/500',
+    path: '/backend/500',
     name: 'error_500',
     meta: {
       hideInMenu: true
@@ -301,7 +301,7 @@ export default [
     component: () => import('../views/error-page/500.vue')
   },
   {
-    path: '*',
+    path: '/backend/*',
     name: 'error_404',
     meta: {
       hideInMenu: true
