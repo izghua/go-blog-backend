@@ -108,7 +108,7 @@
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
-                                        this.$router.push('/login')
+                                        this.$router.push('/backend/login')
                                     },2000)
 
                                 } else {

@@ -79,7 +79,7 @@
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
-                                        this.$router.push('/tag/list')
+                                        this.$router.push('/backend/tag/list')
                                     },2000)
                                 } else {
                                     this.$Message.error(res.data.message);

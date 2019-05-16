@@ -85,7 +85,7 @@
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
-                                        this.$router.push('/cate/list')
+                                        this.$router.push('/backend/cate/list')
                                     },2000)
                                 } else {
                                     this.$Message.error(res.data.message);

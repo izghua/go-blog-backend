@@ -97,7 +97,7 @@
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
-                                        this.$router.push('/system/index')
+                                        this.$router.push('/backend/system/index')
                                     },2000)
                                 } else {
                                     this.$Message.error(res.data.message);

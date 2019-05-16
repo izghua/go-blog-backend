@@ -101,7 +101,7 @@
                         setCookie('token',res.data.data);
 
                         setTimeout(() => {
-                            this.$router.push('/home')
+                            this.$router.push('/backend/home')
                         },1000)
                     } else {
                         this.changeCaptcha();

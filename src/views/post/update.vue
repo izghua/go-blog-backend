@@ -122,7 +122,7 @@
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
-                                        this.$router.push('/post/list')
+                                        this.$router.push('/backend/post/list')
                                     },2000)
                                 } else {
                                     this.$Message.error(res.data.message);

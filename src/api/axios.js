@@ -20,7 +20,6 @@ function CreateAxios(url='/console',time=10000) {
         if (getCookie('token') ) {
             config.headers['x-auth-token'] = getCookie('token');
         }
-        console.log("请求钱",config);
 
         return config;
     }, error => {
@@ -36,7 +35,7 @@ function CreateAxios(url='/console',time=10000) {
             // console.log(response.data);
             const code = response.data.code;
             if (code === 400001005) {
-                location.href = '/login'
+                location.href = '/backend/login'
             }
             if (code !== 0 && code !== 200 ) {
                 Message.error(response.data.message);
