@@ -26,14 +26,14 @@ export function getAllCookie(){
 
 
 export function clearCookie(name){
-    this.setCookie(name, '', -1);
+    setCookie(name, '', -1);
 }
 
 
 export function delCookie(name){
     var exp = new Date();
     exp.setTime(exp.getTime() - 1);
-    var cval = this.getCookie(name);
+    var cval = getCookie(name);
     if (cval != null)
         document.cookie = name + "=" + cval + "; path=/;expires=" + exp.toGMTString();
 }

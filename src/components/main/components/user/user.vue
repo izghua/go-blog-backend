@@ -10,6 +10,7 @@
         <DropdownItem name="message" v-if="false">
           消息中心<Badge style="margin-left: 10px" :count="messageUnreadCount"></Badge>
         </DropdownItem>
+        <DropdownItem name="delCache">清除缓存</DropdownItem>
         <DropdownItem name="logout">退出登录</DropdownItem>
       </DropdownMenu>
     </Dropdown>
@@ -18,6 +19,9 @@
 
 <script>
 import './user.less'
+import {AuthLogout,AuthClearCache} from "@/api/auth"
+import { clearCookie } from '@/libs/cookie'
+
 export default {
   name: 'User',
   props: {
@@ -32,21 +36,37 @@ export default {
   },
   methods: {
     logout () {
-        this.$router.push({
-          name: 'login'
-        })
+      AuthLogout()
+              .then(res => {
+                window.localStorage.removeItem('token');
+                this.$router.push({
+                  name: '/'
+                })
+              }).catch(err => {
+                this.$Message.error("操作失败"+ err);
+              })
     },
     message () {
       this.$router.push({
         name: 'message_page'
       })
     },
+    delCache () {
+      AuthClearCache()
+              .then(res => {
+                  this.$Message.success("操作成功");
+              }).catch(err => {
+                this.$Message.error("操作失败"+ err);
+      })
+    },
     handleClick (name) {
       switch (name) {
-        case 'logout': this.logout()
-          break
-        case 'message': this.message()
-          break
+        case 'logout': this.logout();
+          break;
+        case 'message': this.message();
+          break;
+        case 'delCache': this.delCache();
+        break
       }
     }
   }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {Message} from 'iview'
-import { getCookie } from '@/libs/cookie'
+import { getCookie,clearCookie} from '@/libs/cookie'
 
 
 
@@ -35,6 +35,7 @@ function CreateAxios(url='/console',time=10000) {
             // console.log(response.data);
             const code = response.data.code;
             if (code === 400001005) {
+                clearCookie('token');
                 location.href = '/backend/login'
             }
             if (code !== 0 && code !== 200 ) {
@@ -64,7 +65,7 @@ function CreateAxios(url='/console',time=10000) {
             //   // 登出
             //   store.dispatch('FedLogOut').then(() => {
             //     router.push({ path: '/login' })
-            //   });
+            //   }),
             // } else {
             //   return response
             // }

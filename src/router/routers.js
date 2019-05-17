@@ -59,6 +59,15 @@ export default [
       notCache: true
     },
   },
+  //   {
+  //       path: '/backend/home',
+  //       name: 'redirect',
+  //       redirect: '/backend/home',
+  //       meta: {
+  //           hideInMenu: true,
+  //           notCache: true
+  //       },
+  //   },
   {
     path: '/backend/home',
     meta: {
@@ -67,7 +76,7 @@ export default [
     component: Main,
     children: [
       {
-        path: '/',
+        path: '',
         name: 'home',
         meta: {
           icon: 'md-home',
@@ -130,7 +139,7 @@ export default [
       path: '/backend/cate',
       name: 'cate',
       meta: {
-          icon: 'ios-book',
+          icon: 'md-locate',
           title: '分类管理'
       },
       component: Main,
@@ -139,7 +148,7 @@ export default [
               path: 'list',
               name: 'cate_list',
               meta: {
-                  icon: 'ios-book',
+                  icon: 'md-locate',
                   title: '分类列表'
               },
               component: CateList
@@ -158,7 +167,7 @@ export default [
               path: 'create',
               name: 'cate_create',
               meta: {
-                  icon: 'ios-book',
+                  icon: 'md-add',
                   title: '创建分类'
               },
               component: CateCreate
@@ -169,7 +178,7 @@ export default [
     path: '/backend/tag',
     name: 'tag',
     meta: {
-        icon: 'ios-book',
+        icon: 'md-share',
         title: '标签管理'
     },
     component: Main,
@@ -178,7 +187,7 @@ export default [
             path: 'list',
             name: 'tag_list',
             meta: {
-                icon: 'ios-book',
+                icon: 'md-share',
                 title: '标签列表'
             },
             component: TagIndex
@@ -197,7 +206,7 @@ export default [
             path: 'create',
             name: 'tag_create',
             meta: {
-                icon: 'ios-book',
+                icon: 'ios-add-circle',
                 title: '创建标签'
             },
             component: TagCreate
@@ -208,7 +217,7 @@ export default [
         path: '/backend/system',
         name: 'system',
         meta: {
-            icon: 'ios-book',
+            icon: 'md-settings',
             title: '系统管理'
         },
         component: Main,
@@ -217,7 +226,7 @@ export default [
                 path: 'index',
                 name: 'system_index',
                 meta: {
-                    icon: 'ios-book',
+                    icon: 'md-settings',
                     title: '系统设置'
                 },
                 component: SystemIndex
@@ -228,7 +237,7 @@ export default [
         path: '/backend/link',
         name: 'link',
         meta: {
-            icon: 'ios-book',
+            icon: 'ios-link',
             title: '友链管理'
         },
         component: Main,
@@ -237,7 +246,7 @@ export default [
                 path: 'index',
                 name: 'link_index',
                 meta: {
-                    icon: 'ios-book',
+                    icon: 'ios-link',
                     title: '友链列表'
                 },
                 component: LinkIndex
@@ -256,7 +265,7 @@ export default [
                 path: 'create',
                 name: 'link_create',
                 meta: {
-                    icon: 'ios-book',
+                    icon: 'ios-add-circle-outline',
                     title: '新增友链'
                 },
                 component: LinkCreate

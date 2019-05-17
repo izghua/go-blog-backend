@@ -51,3 +51,22 @@ export function AuthLogin(captchaKey,email,password,captcha) {
         config
     )
 }
+
+export function AuthLogout(params){
+    return axios.delete(
+        '/console/logout',
+        {
+            params
+        }
+    )
+}
+
+export function AuthClearCache(params){
+    return axios.delete(
+        '/console/cache',
+        {
+            params
+        }
+    )
+}
+

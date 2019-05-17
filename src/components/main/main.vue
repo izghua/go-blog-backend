@@ -4,12 +4,13 @@
     <Sider hide-trigger collapsible :width="256" :collapsed-width="64" v-model="collapsed" class="left-sider" :style="{overflow: 'hidden'}">
       <side-menu accordion ref="sideMenu" :active-name="$route.name" :collapsed="collapsed" @on-select="turnToPage" :menu-list="menuList">
         <div class="logo-con">
+          <a href="/" target="_blank">
           <img v-show="!collapsed" :src="maxLogo" key="max-logo" />
           <img v-show="collapsed" :src="minLogo" key="min-logo" />
+          </a>
         </div>
       </side-menu>
     </Sider>
-
     <Layout>
       <Header class="header-con">
         <header-bar :collapsed="collapsed" @on-coll-change="handleCollapsedChange">
@@ -34,8 +35,8 @@ import SideMenu from "./components/side-menu";
 import HeaderBar from "./components/header-bar";
 import User from "./components/user";
 import routers from "../../router/routers";
-import minLogo from "../../assets/g9zz_logo.jpg";
-import maxLogo from "../../assets/g9zz_logo.jpg";
+import minLogo from "../../assets/images/nice.png";
+import maxLogo from "../../assets/images/nice.png";
 import "./main.less";
 export default {
   name: "Main",
