@@ -173,7 +173,7 @@
                 })
             },
             edit (id) {
-                this.$router.push('/link/update?id=' + id)
+                this.$router.push('/backend/link/update?id=' + id)
             },
         }
     }

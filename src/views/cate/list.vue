@@ -165,7 +165,7 @@
                 })
             },
             edit (id) {
-                this.$router.push('/cate/update?id=' + id)
+                this.$router.push('/backend/cate/update?id=' + id)
             },
         }
     }

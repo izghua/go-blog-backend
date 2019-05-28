@@ -163,7 +163,7 @@
                 })
             },
             edit (id) {
-                this.$router.push('/tag/update?id=' + id)
+                this.$router.push('/backend/tag/update?id=' + id)
             },
         }
     }
