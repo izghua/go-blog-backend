@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {Message} from 'iview'
 import { getCookie,clearCookie} from '@/libs/cookie'
-
+import router from '../router/index'
 
 
 function CreateAxios(url='/console',time=10000) {
@@ -36,9 +36,10 @@ function CreateAxios(url='/console',time=10000) {
             const code = response.data.code;
             if (code === 400001005) {
                 clearCookie('token');
-                location.href = '/backend/login'
+                // location.href = '/backend/login'
+                router.push({path: "/backend/login"})
             }
-            if (code !== 0 && code !== 200 ) {
+            if (code !== 0 && code !== 200 && code !== 407000015) {
                 Message.error(response.data.message);
             }
             return response;

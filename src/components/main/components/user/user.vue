@@ -39,9 +39,10 @@ export default {
       AuthLogout()
               .then(res => {
                 window.localStorage.removeItem('token');
-                this.$router.push({
-                  name: '/'
-                })
+                location.href = '/'
+                // this.$router.push({
+                //   name: '/'
+                // })
               }).catch(err => {
                 this.$Message.error("操作失败"+ err);
               })
