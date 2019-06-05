@@ -25,7 +25,7 @@
                             <i-editor v-model="formValidate.content" :config="config" :img-url="imgUrl"  :showMdTip="showMdTip" :autosize="autosize" affix paste :placeholder="placeholder" :showSummary="showSummary"></i-editor>
                         </FormItem>
                         <FormItem>
-                            <Button type="primary" @click="handleSubmit('formValidate')">Submit</Button>
+                            <Button type="primary" @click="handleSubmit('formValidate')" :loading="loading">Submit</Button>
                             <Button @click="handleReset('formValidate')" style="margin-left: 8px">Reset</Button>
                         </FormItem>
                     </Form>
@@ -43,6 +43,7 @@
     export default {
         data () {
             return {
+                loading: false,
                 formValidate: {
                     title: '',
                     category: '',
@@ -59,11 +60,11 @@
                 autosize: {minRows: 15},
                 config: {
                     uploadForm: {
-                        token: '',
+                        token: getCookie('token'),
                         key: '',
                         'upload-token': getCookie('token'),
                     },
-                    action: "./",
+                    action: "/",
                     maxSize: 5120
                 },
                 ruleValidate: {
@@ -106,26 +107,28 @@
             },
 
             handleSubmit (name) {
+                this.loading = true;
                 let that = this;
                 this.$refs[name].validate((valid) => {
                     if (valid) {
                         PostStore(that.formValidate.title,that.formValidate.category,that.formValidate.tags,that.formValidate.summary,that.formValidate.content)
                             .then(res => {
-                                console.log(res.data)
                                 if (res.data.code === 0) {
                                     this.$Message.success(res.data.message);
                                     setTimeout(() => {
+                                        this.loading = false;
                                         this.$router.push('/backend/post/list')
                                     },2000)
                                 } else {
                                     this.$Message.error(res.data.message);
-
+                                    this.loading = false;
                                 }
                             }).catch(err => {
                                 this.$Message.error("创建失败"+ err);
                             })
 
                     } else {
+                        this.loading = false;
                         this.$Message.error('Fail!');
                     }
                 })
